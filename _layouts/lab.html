@@ -1,0 +1,103 @@
+---
+layout: single
+---
+
+<style>
+/* Lab layout: hide default title and meta — we render our own */
+#page-title, .page__title { display: none !important; }
+.page__meta { display: none !important; }
+
+/* Lab markdown files repeat the title + description right after the front
+   matter — between two `---` rules — which produces a leading
+   <hr><h1><p><hr> quartet inside .page__content. The .lab-header above
+   already renders page.title + page.description, so this prefix is
+   redundant. Hide all four elements when the pattern matches. */
+.page__content > hr:first-of-type:has(+ h1 + p + hr),
+.page__content > hr:first-of-type:has(+ h1 + p + hr) + h1,
+.page__content > hr:first-of-type:has(+ h1 + p + hr) + h1 + p,
+.page__content > hr:first-of-type:has(+ h1 + p + hr) + h1 + p + hr {
+  display: none !important;
+}
+
+/* Hide the inline "## Table of Contents" section in lab markdown — the right
+   sidebar's "On this page" nav already provides this. Matches the heading,
+   the list immediately following, and the trailing <hr> separator. */
+.page__content > h2#table-of-contents,
+.page__content > h2#table-of-contents + ul,
+.page__content > h2#table-of-contents + ul + hr {
+  display: none !important;
+}
+
+/* The minimal-mistakes "On this page" sidebar is auto-built from heading IDs,
+   so it surfaces a "Table of Contents" entry even though the inline heading
+   is CSS-hidden above. Hide that entry too.
+   Direct selectors handle pa11y-ci / Puppeteer 9 (Chromium ~92) which does
+   not support :has(); the :has() rule is progressive enhancement for
+   Chrome 105+ to also collapse the parent <li>. */
+.toc__menu a[href="#table-of-contents"],
+.toc__menu a[href="#table-of-contents"] + ul {
+  display: none !important;
+}
+.toc__menu li:has(> a[href="#table-of-contents"]) {
+  display: none !important;
+}
+
+/* Fallback for browsers without :has() support (e.g. Chromium < 105, used by
+   pa11y-ci). If these two selectors were combined in a single rule, the whole
+   rule would be dropped in those browsers; keeping them separate ensures the
+   direct-anchor rule is applied independently. */
+.toc__menu a[href="#table-of-contents"] {
+  display: none !important;
+}
+</style>
+
+{%- comment -%}
+  Event-nav manifest — inlines all events + agendas as JSON so the
+  event-nav IIFE can render in-lab navigation when an event context is
+  active (either via ?event= or a sticky sessionStorage value).
+{%- endcomment -%}
+{% include event-nav/manifest.html %}
+
+{% assign section_map = "core_learning_path:Core Learning Path,intermediate_labs:Intermediate,advanced_labs:Advanced,specialized_labs:Specialized,optional_labs:Optional,external_labs:External" | split: "," %}
+{% assign section_label = page.section %}
+{% for pair in section_map %}
+  {% assign kv = pair | split: ":" %}
+  {% if kv[0] == page.section %}
+    {% assign section_label = kv[1] %}
+  {% endif %}
+{% endfor %}
+
+<div class="lab-header">
+  {%- comment -%}Show parent module link if this lab has one{%- endcomment -%}
+  {%- if page.module -%}
+    {%- assign parent_mod = site.modules | where: "slug", page.module | first -%}
+    {%- if parent_mod -%}
+      <div class="lab-module-link" style="font-size: 0.78em; margin-bottom: 0.5em;">
+        <a href="{{ parent_mod.url | relative_url }}" style="color: var(--color-accent); text-decoration: none; font-weight: 600;">
+          ← Part of: {{ parent_mod.title }}
+        </a>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+  <h1>{{ page.title }}</h1>
+  {% if page.description %}
+  <p class="lab-header-desc">{{ page.description | strip_html }}</p>
+  {% endif %}
+  <div class="lab-header-meta">
+    <span class="lab-meta-pill lab-meta-pill-level-{{ page.difficulty }}">Level {{ page.difficulty }}</span>
+    <span class="lab-meta-pill lab-meta-pill-duration">{{ page.duration }} min</span>
+    <span class="lab-meta-pill lab-meta-pill-section">{{ section_label }}</span>
+    {% if page.syndicated %}{% include syndicated-pill.html source=page.source %}{% endif %}
+    {% unless page.syndicated %}<a href="https://github.com/adindaputra/ms-foundry-tutorial-id/issues/new?template=bug_report.yml&type=Bug&labels=lab&title=%5B{{ page.slug }}%5D+&lab={{ page.slug }}" target="_blank" rel="noopener" class="lab-meta-pill lab-meta-pill-feedback">Report an issue</a>{% endunless %}
+  </div>
+</div>
+
+{% include event-nav/rail.html %}
+
+{{ content }}
+
+{% include event-nav/nav-pair.html %}
+
+{% include event-nav/script.html %}
+
+{% include back-to-top.html %}
