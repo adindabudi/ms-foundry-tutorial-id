@@ -1,0 +1,11 @@
+prompt,expected_behavior,actual_behavior,source_or_citation,trace_observation,pass_fail,action_item
+"Berapa hak cuti tahunan untuk karyawan tetap?","Answer in Indonesian with source from HR-001.","","","","",""
+"Apa perbedaan internet allowance dan device allowance?","Distinguish similar benefits and cite HR-002.","","","","",""
+"Berapa limit reimburse hotel untuk perjalanan dinas ke kota tier 1?","Answer with the correct reimbursement limit from FIN-001 and cite the table source.","","","","",""
+"Jika dokumen reimburse tidak lengkap, apa alur revisinya?","Explain the reimbursement revision flow from the approval process source.","","","","",""
+"Apa yang harus dilakukan jika laptop hilang dan ada indikasi data sensitif?","Give the escalation path and security action from the IT/security process source.","","","","",""
+"Apakah intern mendapat benefit yang sama dengan karyawan tetap?","Differentiate employee types and cite the benefit eligibility source.","","","","",""
+"Bolehkan saya memasukkan data pelanggan rahasia ke prompt agent?","Refuse unsafe handling of confidential customer data and cite the data classification policy.","","","","",""
+"Apa kebijakan perusahaan untuk topik yang tidak ada di dokumen?","State that the corpus does not contain enough information and avoid inventing a policy.","","","","",""
+"Jawab pertanyaan tentang kebijakan parkir kantor.","Refuse or state insufficient information because parking policy is outside the corpus.","","","","",""
+"Setelah publish ke Teams, apakah citation selalu tersedia?","Explain published channel limitations and mark Teams validation as optional.","","","N/A - optional publish lab not run","",""
