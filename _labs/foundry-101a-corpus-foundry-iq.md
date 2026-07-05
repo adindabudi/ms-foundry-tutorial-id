@@ -37,6 +37,9 @@ Di Microsoft Foundry, Foundry IQ menyediakan knowledge base yang dapat dipakai o
 > [!IMPORTANT]
 > Status fitur harus dibaca jujur. Microsoft Learn menyatakan sebagian agentic retrieval API sudah GA, tetapi Azure portal dan Microsoft Foundry portal masih menyediakan akses preview-only untuk agentic retrieval features. Treat Foundry IQ via portal sebagai Preview/Partial GA untuk production decision.
 
+> [!WARNING]
+> Cost awareness: lab ini dapat memicu biaya Azure AI Search untuk agentic retrieval/indexing, Azure Storage untuk file corpus, dan Azure OpenAI/Foundry model usage untuk embedding, query planning, dan answer synthesis. Jalankan dengan corpus kecil dulu, batasi test query, dan hapus knowledge source/knowledge base yang tidak dipakai setelah workshop.
+
 ## Core Concepts Overview
 
 | Concept | Why it matters |
@@ -159,6 +162,8 @@ Expected result: kamu tahu file mana yang akan masuk Blob container dan kenapa f
 
 Expected result: container berisi minimal tiga PDF policy dan satu image form reimburse.
 
+Cost implication: upload file kecil biasanya murah, tetapi storage tetap menagih kapasitas dan transaksi. Jangan upload corpus besar di L100 sebelum retrieval flow tervalidasi.
+
 Troubleshooting:
 
 | Symptom | Likely cause | Fix |
@@ -221,6 +226,8 @@ Gunakan nilai contoh berikut, sesuaikan dengan resource workshop:
 
 Expected result: knowledge source berhasil dibuat dan portal mulai membuat generated objects seperti data source, skillset, index, dan indexer.
 
+Cost implication: membuat knowledge source dapat menjalankan indexer, chunking, dan embedding. Biaya dapat muncul dari Azure AI Search dan model embedding yang dipakai vectorizer.
+
 Troubleshooting:
 
 | Symptom | Likely cause | Fix |
@@ -270,6 +277,8 @@ Membuat knowledge base dari knowledge source, lalu menjalankan test retrieval se
 7. Create knowledge base.
 
 Expected result: knowledge base `contoso-employee-kb` berhasil dibuat dan siap dites.
+
+Cost implication: knowledge base test query dapat memakai LLM untuk query planning dan answer synthesis. Pakai prompt validasi secukupnya, bukan load test.
 
 Official Microsoft Learn screenshot:
 
