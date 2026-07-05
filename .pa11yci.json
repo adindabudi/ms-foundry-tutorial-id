@@ -1,0 +1,19 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "timeout": 30000,
+    "wait": 500,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+    },
+    "ignore": [
+      "WCAG2AA.Principle3.Guideline3_2.3_2_2.H32.2"
+    ]
+  },
+  "urls": [
+    "http://127.0.0.1:4000/ms-foundry-tutorial-id/",
+    "http://127.0.0.1:4000/ms-foundry-tutorial-id/modules/foundry-101/",
+    "http://127.0.0.1:4000/ms-foundry-tutorial-id/workshops/foundry-101-guided-workshop/",
+    "http://127.0.0.1:4000/ms-foundry-tutorial-id/labs/foundry-101a-corpus-foundry-iq/"
+  ]
+}

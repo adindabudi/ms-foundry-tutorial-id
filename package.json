@@ -1,0 +1,19 @@
+{
+  "name": "ms-foundry-tutorial-id",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Accessibility and content tooling for MS Foundry Tutorial ID.",
+  "scripts": {
+    "a11y": "pa11y-ci --config .pa11yci.json",
+    "lighthouse": "lhci autorun",
+    "test": "node --test scripts/*.test.js",
+    "check:lab-sync": "git diff --name-status --find-renames origin/main...HEAD | node scripts/check-lab-sync.js"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "http-server": "^14.1.1",
+    "js-yaml": "^4.1.0",
+    "pa11y-ci": "^4.1.1",
+    "wait-on": "^7.2.0"
+  }
+}

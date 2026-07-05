@@ -1,0 +1,127 @@
+title: "MS Foundry Tutorial ID"
+subtitle: "Tutorial Microsoft Foundry berbahasa Indonesia"
+description: "Hands-on labs Microsoft Foundry untuk prompt agents, Foundry IQ, validation, observability, dan pilot readiness."
+baseurl: "/ms-foundry-tutorial-id"
+url: "https://adindaputra.github.io"
+logo: "/favicon.svg"
+
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: "air"
+locale: "id-ID"
+
+search: true
+search_full_content: true
+breadcrumbs: true
+enable_copy_code_button: true
+
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-include-cache
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: "highlight"
+
+author:
+  name: "MS Foundry Tutorial ID"
+  bio: "Tutorial Microsoft Foundry berbahasa Indonesia"
+  avatar: "/favicon.svg"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/adindaputra/ms-foundry-tutorial-id"
+
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/adindaputra/ms-foundry-tutorial-id"
+
+collections:
+  modules:
+    output: true
+    permalink: /modules/:name/
+  labs:
+    output: true
+    permalink: /labs/:name/
+  events:
+    output: true
+    permalink: /events/:name/
+  workshops:
+    output: true
+    permalink: /workshops/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "modules"
+    values:
+      layout: "module"
+      author_profile: false
+      toc: false
+      breadcrumbs: false
+      read_time: false
+      share: false
+  - scope:
+      path: ""
+      type: "labs"
+    values:
+      layout: "lab"
+      author_profile: false
+      toc: true
+      toc_sticky: true
+      toc_label: "On this page"
+      toc_icon: "bookmark"
+      read_time: false
+      share: false
+  - scope:
+      path: ""
+      type: "events"
+    values:
+      layout: "event"
+      author_profile: false
+      classes: wide
+      toc: false
+      share: false
+  - scope:
+      path: ""
+      type: "workshops"
+    values:
+      layout: "workshop"
+      author_profile: false
+      classes: wide
+      toc: false
+      share: false
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "single"
+
+include:
+  - favicon.svg
+
+exclude:
+  - .github/
+  - README.md
+  - LICENSE
+  - SECURITY.md
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+  - SUPPORT.md
+  - GOVERNANCE.md
+  - THIRD_PARTY_NOTICES.md
+  - NOTICE.md
+  - docs/
+  - labs/*/README.md
+  - labs/*/local-dist/
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - scripts/*.test.js

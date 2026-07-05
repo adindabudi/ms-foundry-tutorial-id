@@ -1,0 +1,26 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "./_site",
+      "url": [
+        "http://localhost/index.html",
+        "http://localhost/modules/foundry-101/index.html",
+        "http://localhost/workshops/foundry-101-guided-workshop/index.html",
+        "http://localhost/labs/foundry-101a-corpus-foundry-iq/index.html"
+      ],
+      "numberOfRuns": 1,
+      "settings": {
+        "onlyCategories": ["accessibility"],
+        "chromeFlags": "--no-sandbox --disable-setuid-sandbox"
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:accessibility": ["error", { "minScore": 0.95 }]
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}
