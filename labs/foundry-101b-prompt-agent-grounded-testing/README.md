@@ -75,7 +75,7 @@ flowchart LR
 
 - Lab 101A selesai, atau trainer menyediakan knowledge base siap pakai.
 - Foundry project tersedia.
-- Model deployment tersedia untuk prompt agent.
+- Model deployment tersedia untuk prompt agent. Jika trainer memakai admin setup Terraform, gunakan deployment chat default `gpt-4o-mini` kecuali trainer memberi nama lain dari `terraform output model_deployments`.
 - User punya role untuk create/manage agent, misalnya Foundry User atau role workshop yang setara.
 
 ## Summary of Targets

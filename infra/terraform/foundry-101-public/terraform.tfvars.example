@@ -1,0 +1,36 @@
+# Copy to terraform.tfvars and adjust before running terraform plan/apply.
+# No secrets are required. Authentication uses Azure CLI, OIDC, or ARM_* variables.
+
+# subscription_id = "00000000-0000-0000-0000-000000000000"
+location        = "swedencentral"
+tutorial_level  = "l10x"
+resource_prefix = "ms-foundry"
+
+# Give workshop participants access by group object ID when possible.
+# workshop_principal_object_ids = [
+#   "00000000-0000-0000-0000-000000000000"
+# ]
+
+# Override if a region has different model availability or quota.
+# model_deployments = {
+#   chat = {
+#     deployment_name = "gpt-4o-mini"
+#     model_name      = "gpt-4o-mini"
+#     model_version   = "2024-07-18"
+#     sku_name        = "GlobalStandard"
+#     capacity        = 10
+#   }
+#
+#   embedding = {
+#     deployment_name = "text-embedding-3-small"
+#     model_name      = "text-embedding-3-small"
+#     model_version   = "1"
+#     sku_name        = "Standard"
+#     capacity        = 10
+#   }
+# }
+
+tags = {
+  cost_center = "workshop"
+  environment = "training"
+}

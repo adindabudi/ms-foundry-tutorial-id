@@ -93,8 +93,8 @@ flowchart LR
 - Foundry project yang sudah tersedia.
 - Azure AI Search service Basic tier atau lebih tinggi.
 - Storage account dan Blob container, atau izin membuat container.
-- Model embedding yang sudah deployed, misalnya `text-embedding-3-small` atau `text-embedding-3-large`.
-- LLM deployment yang didukung portal untuk planning/answer generation, misalnya `gpt-4o`, `gpt-4o-mini`, `gpt-5`, `gpt-5-mini`, atau `gpt-5-nano`.
+- Model embedding yang sudah deployed. Setup Terraform admin di `infra/terraform/foundry-101-public` membuat deployment default `text-embedding-3-small`.
+- LLM deployment yang didukung portal untuk planning/answer generation. Setup Terraform admin membuat deployment default `gpt-4o-mini`; trainer boleh mengganti via variable Terraform jika region/quota memakai model lain.
 
 ### Required RBAC
 
@@ -106,7 +106,7 @@ flowchart LR
 | Foundry project | Your user | Foundry User or equivalent workshop role |
 
 > [!TIP]
-> Kalau workshop trainer sudah menyediakan Search service, storage container, model deployment, dan RBAC, peserta cukup mengikuti langkah upload dan portal setup. Kalau belum, minta owner subscription menyiapkan resource sebelum L100 dimulai; lab ini bukan provisioning lab.
+> Kalau workshop trainer sudah menyediakan Search service, storage container, model deployment, dan RBAC, peserta cukup mengikuti langkah upload dan portal setup. Kalau belum, minta owner subscription menjalankan admin setup di `infra/terraform/foundry-101-public` sebelum L100 dimulai; lab ini bukan provisioning lab untuk peserta.
 
 ## Summary of Targets
 
