@@ -24,6 +24,22 @@ Lab ini menyiapkan corpus fiktif Contoso Indonesia dan knowledge base Foundry IQ
 | --- | --- | --- | --- |
 | L100 | Business user / maker | 30-45 minutes | Corpus siap di Blob Storage, knowledge source dan knowledge base siap dipakai untuk grounded testing. |
 
+## Table of Contents
+
+- [Why This Matters](#why-this-matters)
+- [Introduction](#introduction)
+- [Core Concepts Overview](#core-concepts-overview)
+- [Documentation and Additional Training Links](#documentation-and-additional-training-links)
+- [Prerequisites](#prerequisites)
+- [Summary of Targets](#summary-of-targets)
+- [Use Cases Covered](#use-cases-covered)
+- [Instructions by Use Case](#instructions-by-use-case)
+- [Use Case #1: Review dan upload corpus](#use-case-1-review-dan-upload-corpus)
+- [Use Case #2: Create knowledge source](#use-case-2-create-knowledge-source)
+- [Use Case #3: Create dan test knowledge base](#use-case-3-create-dan-test-knowledge-base)
+- [Summary of learnings](#summary-of-learnings)
+- [Conclusions and recommendations](#conclusions-and-recommendations)
+
 ## Why This Matters
 
 Banyak demo chatbot gagal bukan karena modelnya buruk, tetapi karena knowledge source belum siap: dokumen tidak lengkap, tabel tidak terbaca, indexer gagal, atau sumber yang mirip bercampur. Lab ini sengaja mulai dari corpus dan retrieval supaya agent di lab berikutnya tidak hanya terlihat pintar, tetapi bisa dibuktikan grounding-nya.
