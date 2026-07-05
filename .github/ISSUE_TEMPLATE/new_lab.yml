@@ -1,0 +1,32 @@
+name: New lab proposal
+description: Propose a new Foundry tutorial lab.
+title: "[new lab]: "
+labels: [enhancement, lab]
+body:
+  - type: input
+    id: level
+    attributes:
+      label: Level
+      description: "Example: L100, L150, L200, or L300."
+    validations:
+      required: true
+  - type: input
+    id: title
+    attributes:
+      label: Proposed title
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Learning outcome
+      description: Describe what the learner can do after completing the lab.
+    validations:
+      required: true
+  - type: textarea
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: List required Azure, Foundry, Microsoft 365, or tooling assumptions.
+    validations:
+      required: true

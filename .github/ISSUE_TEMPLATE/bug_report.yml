@@ -1,0 +1,47 @@
+name: Bug report
+description: Report a broken page, build issue, or incorrect tutorial behavior.
+title: "[bug]: "
+labels: [bug]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Affected page or file
+      description: Paste the URL or path, such as labs/foundry-101a-corpus-foundry-iq/README.md.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: List exact steps, commands, or portal actions.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Site build
+        - Accessibility
+        - Lab instructions
+        - Screenshot or visual
+        - Sample data
+        - Feature readiness
+    validations:
+      required: true
+  - type: textarea
+    id: privacy
+    attributes:
+      label: Privacy check
+      description: Confirm the issue does not include secrets, tenant IDs, subscription IDs, user emails, or private data.
+      value: "I confirm this issue does not include secrets or private tenant/customer data."
+    validations:
+      required: true

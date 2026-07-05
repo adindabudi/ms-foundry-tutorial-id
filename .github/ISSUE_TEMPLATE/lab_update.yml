@@ -1,0 +1,26 @@
+name: Lab update
+description: Request a correction or update to an existing lab.
+title: "[lab]: "
+labels: [lab, content]
+body:
+  - type: input
+    id: lab
+    attributes:
+      label: Lab slug
+      description: "Example: foundry-101a-corpus-foundry-iq"
+    validations:
+      required: true
+  - type: textarea
+    id: update
+    attributes:
+      label: Requested update
+      description: "Explain the correction, missing step, outdated screenshot, or feature-status change."
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source link
+      description: Provide a Microsoft Learn or official source link when the update changes product guidance.
+    validations:
+      required: false
