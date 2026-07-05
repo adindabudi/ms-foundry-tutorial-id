@@ -31,5 +31,3 @@ Klaim diajukan oleh karyawan, disetujui manager, lalu direview Finance. Klaim di
 | Kelebihan bagasi | Kasus khusus | Semua role | Rp500.000/trip | HoD + Finance | Harus terkait barang kerja/event. |
 | Klaim tanpa struk | Semua kota | Semua role | Maks Rp100.000 | Finance | Maksimal dua transaksi per trip. |
 | Dokumen tidak lengkap | Semua kota | Semua role | Dikembalikan | Finance | Karyawan punya 5 hari kerja untuk revisi. |
-
-> Dokumen ini fiktif dan hanya dipakai untuk latihan Foundry IQ.

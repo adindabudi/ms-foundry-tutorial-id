@@ -43,7 +43,7 @@ const documents = [
     effective: '1 Januari 2026',
     classification: 'Internal',
     intro:
-      'Dokumen ini menjelaskan hak cuti, aturan pengajuan, dan pengecualian untuk karyawan Contoso Indonesia. Data di dokumen ini fiktif dan hanya dipakai untuk latihan Foundry IQ.',
+      'Dokumen ini menjelaskan hak cuti, aturan pengajuan, dan pengecualian untuk karyawan Contoso Indonesia.',
     sections: [
       {
         heading: 'Prinsip Umum',
@@ -70,6 +70,7 @@ const documents = [
       ['Cuti ujian sertifikasi', 'Karyawan tetap dan kontrak', '2 hari/tahun', 'H-14', 'Jadwal ujian', 'Sertifikasi harus relevan dengan role.'],
       ['Cuti force majeure', 'Semua karyawan', 'Kasus per kasus', 'Secepatnya', 'Bukti pendukung', 'Butuh approval People Operations.'],
     ],
+    visual: 'leave-flow',
   },
   {
     code: 'HR-002',
@@ -102,6 +103,7 @@ const documents = [
       ['Employee assistance program', 'Ya', 'Ya', 'Ya', '6 sesi/tahun', 'Konseling rahasia melalui vendor resmi.'],
       ['Parking reimbursement', 'Tidak disebutkan', 'Tidak disebutkan', 'Tidak disebutkan', '-', 'Tidak ada kebijakan parkir di dokumen ini.'],
     ],
+    visual: 'benefit-summary',
   },
   {
     code: 'FIN-001',
@@ -140,6 +142,8 @@ const documents = [
       ['Klaim tanpa struk', 'Semua kota', 'Semua role', 'Maks Rp100.000', 'Finance', 'Maksimal dua transaksi per trip.'],
       ['Dokumen tidak lengkap', 'Semua kota', 'Semua role', 'Dikembalikan', 'Finance', 'Karyawan punya 5 hari kerja untuk revisi.'],
     ],
+    visual: 'reimburse-flow',
+    appendixImage: 'FORM-reimburse-scan.png',
   },
 ];
 
@@ -164,8 +168,6 @@ function writeMarkdown(spec) {
     `| ${spec.columns.join(' | ')} |`,
     `| ${spec.columns.map(() => '---').join(' | ')} |`,
     ...spec.rows.map((row) => `| ${row.join(' | ')} |`),
-    '',
-    '> Dokumen ini fiktif dan hanya dipakai untuk latihan Foundry IQ.',
   ];
   fs.writeFileSync(path.join(DIRS.source, `${spec.filename}.md`), lines.join('\n'), 'utf8');
 }
@@ -175,9 +177,8 @@ function pdfHeader(doc, spec) {
   doc.moveTo(48, 44).lineTo(564, 44).strokeColor('#d0d7de').stroke();
 }
 
-function pdfFooter(doc, spec) {
-  const page = doc.bufferedPageRange().count;
-  doc.fontSize(8).fillColor('#6a737d').text(`Contoso Indonesia (fiktif) | ${spec.owner} | Halaman ${page}`, 48, 760, { align: 'center', width: 516 });
+function pdfFooter(doc, spec, pageNumber) {
+  doc.fontSize(8).fillColor('#6a737d').text(`Contoso Indonesia | ${spec.owner} | Halaman ${pageNumber}`, 48, 760, { align: 'center', width: 516 });
 }
 
 function drawWrappedText(doc, text, x, y, width, options = {}) {
@@ -207,7 +208,6 @@ function drawTable(doc, spec, startY) {
     const rowHeight = Math.max(30, ...heights);
     if (y + rowHeight > bottom) {
       doc.addPage();
-      pdfHeader(doc, spec);
       y = drawTableHeader(doc, spec, x, 64);
     }
     let cursor = x;
@@ -218,6 +218,85 @@ function drawTable(doc, spec, startY) {
     });
     y += rowHeight;
   });
+  return y;
+}
+
+function ensureSpace(doc, y, requiredHeight) {
+  if (y + requiredHeight <= 728) return y;
+  doc.addPage();
+  return 64;
+}
+
+function drawFlowBox(doc, x, y, w, h, title, subtitle = '', options = {}) {
+  doc.roundedRect(x, y, w, h, 8).fillAndStroke(options.fill || '#ffffff', options.stroke || '#2563eb');
+  drawWrappedText(doc, title, x + 10, y + 12, w - 20, { bold: true, size: 8, color: options.color || '#0f172a' });
+  if (subtitle) drawWrappedText(doc, subtitle, x + 10, y + 34, w - 20, { size: 7, color: '#334155' });
+}
+
+function drawArrow(doc, x1, y1, x2, y2) {
+  doc.moveTo(x1, y1).lineTo(x2, y2).strokeColor('#64748b').lineWidth(1.5).stroke();
+  const angle = Math.atan2(y2 - y1, x2 - x1);
+  const size = 6;
+  doc
+    .moveTo(x2, y2)
+    .lineTo(x2 - size * Math.cos(angle - Math.PI / 6), y2 - size * Math.sin(angle - Math.PI / 6))
+    .lineTo(x2 - size * Math.cos(angle + Math.PI / 6), y2 - size * Math.sin(angle + Math.PI / 6))
+    .closePath()
+    .fillColor('#64748b')
+    .fill();
+}
+
+function drawVisualSection(doc, spec, y) {
+  if (!spec.visual) return y;
+  y = ensureSpace(doc, y, 150);
+  doc.font('Helvetica-Bold').fontSize(13).fillColor('#0f3b61').text('Visual proses dan catatan operasional', 48, y);
+  y += 26;
+  const x = 48;
+  if (spec.visual === 'leave-flow') {
+    drawFlowBox(doc, x, y, 110, 58, 'Ajukan cuti', 'HR Portal');
+    drawFlowBox(doc, x + 142, y, 110, 58, 'Manager review', 'maks. 2 hari kerja');
+    drawFlowBox(doc, x + 284, y, 110, 58, 'HR update', 'saldo & status');
+    drawFlowBox(doc, x + 426, y, 90, 58, 'Notifikasi', 'ke karyawan');
+    drawArrow(doc, x + 110, y + 29, x + 142, y + 29);
+    drawArrow(doc, x + 252, y + 29, x + 284, y + 29);
+    drawArrow(doc, x + 394, y + 29, x + 426, y + 29);
+    y += 78;
+    drawWrappedText(doc, 'Cuti sakit dapat dilaporkan pada hari H. Cuti khusus dan cuti melahirkan memerlukan dokumen pendukung sebelum approval final.', x, y, 500, { size: 8 });
+    return y + 34;
+  }
+  if (spec.visual === 'benefit-summary') {
+    drawFlowBox(doc, x, y, 140, 70, 'Karyawan tetap', 'Benefit penuh', { fill: '#ecfdf5', stroke: '#10b981' });
+    drawFlowBox(doc, x + 188, y, 140, 70, 'Kontrak', 'Benefit dasar + approval', { fill: '#eff6ff', stroke: '#2563eb' });
+    drawFlowBox(doc, x + 376, y, 140, 70, 'Intern', 'Benefit terbatas', { fill: '#fff7ed', stroke: '#f97316' });
+    y += 92;
+    drawWrappedText(doc, 'Internet allowance berbeda dari device allowance. Parking reimbursement tidak disebutkan dalam dokumen benefit ini.', x, y, 500, { size: 8 });
+    return y + 34;
+  }
+  if (spec.visual === 'reimburse-flow') {
+    drawFlowBox(doc, x, y, 106, 58, 'Submit klaim', 'karyawan');
+    drawFlowBox(doc, x + 130, y, 108, 58, 'Manager', 'approval');
+    drawFlowBox(doc, x + 262, y, 108, 58, 'Nilai klaim?', '<= / > Rp2 juta', { fill: '#ecfeff', stroke: '#0891b2' });
+    drawFlowBox(doc, x + 394, y - 42, 122, 58, 'HoD approval', '> Rp2 juta', { fill: '#fef2f2', stroke: '#ef4444' });
+    drawFlowBox(doc, x + 394, y + 42, 122, 58, 'Finance review', 'dokumen lengkap?');
+    drawArrow(doc, x + 106, y + 29, x + 130, y + 29);
+    drawArrow(doc, x + 238, y + 29, x + 262, y + 29);
+    drawArrow(doc, x + 370, y + 20, x + 394, y - 14);
+    drawArrow(doc, x + 370, y + 40, x + 394, y + 70);
+    y += 122;
+    drawWrappedText(doc, 'Jika dokumen tidak lengkap, klaim dikembalikan untuk revisi. Karyawan punya 5 hari kerja untuk melengkapi dokumen.', x, y, 500, { size: 8 });
+    return y + 34;
+  }
+  return y;
+}
+
+function drawImageAppendix(doc, spec) {
+  if (!spec.appendixImage) return;
+  const imagePath = path.join(DIRS.assets, spec.appendixImage);
+  if (!fs.existsSync(imagePath)) return;
+  doc.addPage();
+  doc.font('Helvetica-Bold').fontSize(15).fillColor('#0f3b61').text('Lampiran visual: contoh form klaim', 48, 64);
+  doc.font('Helvetica').fontSize(9).fillColor('#334155').text('Lampiran ini menggambarkan tantangan dokumen hasil scan: tabel, stamp, checklist, dan status approval dalam satu gambar.', 48, 90, { width: 500 });
+  doc.image(imagePath, 118, 126, { fit: [360, 520], align: 'center' });
 }
 
 function writePdf(spec) {
@@ -236,12 +315,14 @@ function writePdf(spec) {
     doc.font('Helvetica').fontSize(9).fillColor('#111827').text(section.body, 48, y, { width: 500, lineGap: 3 });
     y += doc.heightOfString(section.body, { width: 500 }) + 22;
   }
+  y = drawVisualSection(doc, spec, y);
   doc.font('Helvetica-Bold').fontSize(13).fillColor('#0f3b61').text(spec.tableTitle, 48, y);
   drawTable(doc, spec, y + 24);
+  drawImageAppendix(doc, spec);
   const range = doc.bufferedPageRange();
   for (let i = range.start; i < range.start + range.count; i += 1) {
     doc.switchToPage(i);
-    pdfFooter(doc, spec);
+    pdfFooter(doc, spec, i - range.start + 1);
   }
   doc.end();
 }
@@ -292,7 +373,6 @@ async function writeDocx(spec) {
           columnWidths: spec.columns.map(() => columnWidth),
           rows,
         }),
-        paragraph('Dokumen ini fiktif dan hanya dipakai untuk latihan Foundry IQ.'),
       ],
     }],
   });
@@ -314,7 +394,7 @@ function writeDiagramAssets() {
   fs.writeFileSync(path.join(DIRS.diagrams, 'reimburse-approval.mmd'), mmd, 'utf8');
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
   <title id="title">Proses Persetujuan Reimburse</title>
-  <desc id="desc">Diagram proses reimburse fiktif Contoso Indonesia berdasarkan sumber Mermaid.</desc>
+  <desc id="desc">Diagram proses reimburse Contoso Indonesia berdasarkan sumber Mermaid.</desc>
   <rect width="1200" height="520" fill="#f8fafc"/>
   <style>.box{fill:#fff;stroke:#2563eb;stroke-width:2;rx:12}.decision{fill:#ecfeff;stroke:#0891b2;stroke-width:2}.txt{font-family:Arial,sans-serif;font-size:22px;fill:#0f172a}.small{font-size:18px;fill:#334155}.arrow{stroke:#475569;stroke-width:3;marker-end:url(#arrow)}</style>
   <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#475569"/></marker></defs>

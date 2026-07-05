@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
   <title id="title">Proses Persetujuan Reimburse</title>
-  <desc id="desc">Diagram proses reimburse fiktif Contoso Indonesia berdasarkan sumber Mermaid.</desc>
+  <desc id="desc">Diagram proses reimburse Contoso Indonesia berdasarkan sumber Mermaid.</desc>
   <rect width="1200" height="520" fill="#f8fafc"/>
   <style>.box{fill:#fff;stroke:#2563eb;stroke-width:2;rx:12}.decision{fill:#ecfeff;stroke:#0891b2;stroke-width:2}.txt{font-family:Arial,sans-serif;font-size:22px;fill:#0f172a}.small{font-size:18px;fill:#334155}.arrow{stroke:#475569;stroke-width:3;marker-end:url(#arrow)}</style>
   <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#475569"/></marker></defs>

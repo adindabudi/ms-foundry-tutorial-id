@@ -5,7 +5,7 @@ Owner: People Operations
 Tanggal efektif: 1 Januari 2026
 Klasifikasi: Internal
 
-Dokumen ini menjelaskan hak cuti, aturan pengajuan, dan pengecualian untuk karyawan Contoso Indonesia. Data di dokumen ini fiktif dan hanya dipakai untuk latihan Foundry IQ.
+Dokumen ini menjelaskan hak cuti, aturan pengajuan, dan pengecualian untuk karyawan Contoso Indonesia.
 
 ## Prinsip Umum
 
@@ -28,5 +28,3 @@ Cuti sakit lebih dari satu hari memerlukan surat dokter. Cuti khusus memerlukan 
 | Cuti ibadah | Karyawan tetap | 10 hari kerja | H-30 | Bukti perjalanan | Maksimal sekali selama masa kerja. |
 | Cuti ujian sertifikasi | Karyawan tetap dan kontrak | 2 hari/tahun | H-14 | Jadwal ujian | Sertifikasi harus relevan dengan role. |
 | Cuti force majeure | Semua karyawan | Kasus per kasus | Secepatnya | Bukti pendukung | Butuh approval People Operations. |
-
-> Dokumen ini fiktif dan hanya dipakai untuk latihan Foundry IQ.

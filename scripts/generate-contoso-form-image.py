@@ -46,7 +46,7 @@ def generate() -> None:
     x0, y = MARGIN, 92
     text(draw, (x0, y), "CONTOSO INDONESIA", size=34, bold=True, fill="#0f3b61")
     text(draw, (x0, y + 42), "FORM REIMBURSE KARYAWAN", size=44, bold=True)
-    text(draw, (x0, y + 98), "Dokumen fiktif untuk latihan Foundry IQ - bukan formulir perusahaan nyata", size=22, fill="#64748b")
+    text(draw, (x0, y + 98), "Form internal reimbursement", size=22, fill="#64748b")
     draw.line((x0, y + 136, WIDTH - MARGIN, y + 136), fill="#0f3b61", width=4)
 
     y += 178
@@ -88,7 +88,7 @@ def generate() -> None:
         y += row_h
 
     y += 46
-    box(draw, (x0, y, WIDTH - MARGIN, y + 120), "Catatan Karyawan", "Perjalanan dinas ke Jakarta untuk workshop pelanggan. Semua nilai fiktif.")
+    box(draw, (x0, y, WIDTH - MARGIN, y + 120), "Catatan Karyawan", "Perjalanan dinas ke Jakarta untuk workshop pelanggan.")
     y += 154
     box(draw, (x0, y, x0 + half, y + 122), "Persetujuan Manager", "Status: Disetujui")
     box(draw, (x0 + half + 24, y, WIDTH - MARGIN, y + 122), "Finance Review", "Status: Menunggu verifikasi")

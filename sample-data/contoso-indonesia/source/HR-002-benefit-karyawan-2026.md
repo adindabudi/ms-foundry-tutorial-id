@@ -25,5 +25,3 @@ Benefit berlaku berdasarkan status karyawan pada tanggal klaim diajukan. Perubah
 | Home office kit | Ya | Tidak | Tidak | Sekali saat onboarding | Kursi kerja, monitor, dan keyboard sesuai stok IT. |
 | Employee assistance program | Ya | Ya | Ya | 6 sesi/tahun | Konseling rahasia melalui vendor resmi. |
 | Parking reimbursement | Tidak disebutkan | Tidak disebutkan | Tidak disebutkan | - | Tidak ada kebijakan parkir di dokumen ini. |
-
-> Dokumen ini fiktif dan hanya dipakai untuk latihan Foundry IQ.
