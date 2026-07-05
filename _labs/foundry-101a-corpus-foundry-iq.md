@@ -146,6 +146,9 @@ Expected result: kamu tahu file mana yang akan masuk Blob container dan kenapa f
 1. Buka [Azure portal](https://portal.azure.com).
 2. Buka Storage account yang disediakan workshop.
 3. Pilih **Data storage** > **Containers**.
+
+   ![Azure portal Containers blade showing Add container and Upload actions.](assets/portal-storage-containers.jpg)
+
 4. Buat container baru, misalnya:
 
    ```text
@@ -184,7 +187,14 @@ Membuat knowledge source yang menghubungkan Blob container ke Azure AI Search / 
 1. Buka Azure AI Search service yang disediakan workshop.
 2. Di left navigation, pilih **Agentic retrieval** > **Knowledge sources**.
 3. Pilih **Add knowledge source** > **Add knowledge source**.
+
+   ![Azure portal Knowledge sources blade with Add knowledge source action.](assets/portal-knowledge-sources-list.jpg)
+
+   ![Azure portal Add knowledge source dropdown showing Add knowledge source and JSON options.](assets/portal-add-knowledge-source-menu.jpg)
+
 4. Pilih **Azure blob (Indexed)**.
+
+   ![Azure portal Create knowledge source pane showing source type options.](assets/portal-create-knowledge-source-form.jpg)
 
 Official Microsoft Learn screenshot:
 
@@ -238,6 +248,11 @@ Membuat knowledge base dari knowledge source, lalu menjalankan test retrieval se
 
 1. Di Azure AI Search service, buka **Agentic retrieval** > **Knowledge bases**.
 2. Pilih **Add knowledge base** > **Add knowledge base**.
+
+   ![Azure portal Knowledge bases blade with Add knowledge base action.](assets/portal-knowledge-bases-list.jpg)
+
+   ![Azure portal Add knowledge base dropdown showing Add knowledge base and JSON options.](assets/portal-add-knowledge-base-menu.jpg)
+
 3. Isi name:
 
    ```text
@@ -259,6 +274,10 @@ Expected result: knowledge base `contoso-employee-kb` berhasil dibuat dan siap d
 Official Microsoft Learn screenshot:
 
 ![Screenshot of Azure AI Search knowledge base configuration from Microsoft Learn.](assets/mslearn-knowledge-base.png)
+
+Tenant screenshot:
+
+![Azure portal Create knowledge base pane captured from the workshop tenant.](assets/portal-create-knowledge-base-form.jpg)
 
 Screenshot status: screenshot Microsoft Learn di atas menunjukkan shape umum form knowledge base. Screenshot tenant sendiri tetap perlu diambil via Playwright setelah login kalau ingin dokumentasi workshop menampilkan resource dan naming yang persis.
 
