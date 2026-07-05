@@ -48,6 +48,12 @@ npm run a11y
 npm run lighthouse
 ```
 
+Regenerate the fictional Contoso Indonesia corpus artifacts:
+
+```bash
+npm run generate:corpus
+```
+
 ## Feature Readiness
 
 The tutorial content distinguishes generally available, preview, partial GA, and Early Access Preview surfaces. Feature readiness notes are included with each lab.

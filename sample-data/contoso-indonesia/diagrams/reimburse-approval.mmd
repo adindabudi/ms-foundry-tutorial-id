@@ -1,0 +1,9 @@
+flowchart LR
+    A[Submit reimburse] --> B[Manager approval]
+    B --> C{Nilai klaim}
+    C -->|<= Rp2 juta| D[Finance review]
+    C -->|> Rp2 juta| E[Head of Department approval]
+    E --> D
+    D --> F{Dokumen lengkap?}
+    F -->|Ya| G[Pembayaran max 7 hari kerja]
+    F -->|Tidak| H[Dikembalikan untuk revisi]

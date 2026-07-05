@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Proses Persetujuan Reimburse</title>
+  <desc id="desc">Diagram proses reimburse fiktif Contoso Indonesia berdasarkan sumber Mermaid.</desc>
+  <rect width="1200" height="520" fill="#f8fafc"/>
+  <style>.box{fill:#fff;stroke:#2563eb;stroke-width:2;rx:12}.decision{fill:#ecfeff;stroke:#0891b2;stroke-width:2}.txt{font-family:Arial,sans-serif;font-size:22px;fill:#0f172a}.small{font-size:18px;fill:#334155}.arrow{stroke:#475569;stroke-width:3;marker-end:url(#arrow)}</style>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#475569"/></marker></defs>
+  <rect class="box" x="40" y="210" width="180" height="84"/><text class="txt" x="70" y="246">Submit</text><text class="small" x="70" y="272">reimburse</text>
+  <rect class="box" x="280" y="210" width="190" height="84"/><text class="txt" x="305" y="246">Manager</text><text class="small" x="305" y="272">approval</text>
+  <polygon class="decision" points="590,170 710,252 590,334 470,252"/><text class="txt" x="535" y="247">Nilai</text><text class="small" x="532" y="273">klaim?</text>
+  <rect class="box" x="760" y="105" width="230" height="84"/><text class="txt" x="790" y="141">Head of Dept</text><text class="small" x="790" y="167">approval</text>
+  <rect class="box" x="760" y="315" width="190" height="84"/><text class="txt" x="790" y="351">Finance</text><text class="small" x="790" y="377">review</text>
+  <polygon class="decision" points="1040,275 1140,357 1040,439 940,357"/><text class="txt" x="985" y="352">Lengkap?</text>
+  <path class="arrow" d="M220 252 H280"/><path class="arrow" d="M470 252 H500"/><path class="arrow" d="M710 230 C740 190 745 155 760 147"/><path class="arrow" d="M710 275 C740 320 745 348 760 357"/><path class="arrow" d="M990 147 C1050 175 1070 250 1040 275"/><path class="arrow" d="M950 357 H970"/>
+  <text class="small" x="720" y="215">&gt; Rp2 juta</text><text class="small" x="720" y="305">&lt;= Rp2 juta</text><text class="small" x="1020" y="475">Ya: bayar max 7 hari kerja</text><text class="small" x="760" y="455">Tidak: revisi 5 hari kerja</text>
+</svg>

@@ -5,15 +5,18 @@
   "description": "Accessibility and content tooling for MS Foundry Tutorial ID.",
   "scripts": {
     "a11y": "pa11y-ci --config .pa11yci.json",
+    "generate:corpus": "node scripts/generate-contoso-corpus.mjs && python3 scripts/generate-contoso-form-image.py",
     "lighthouse": "lhci autorun",
     "test": "node --test scripts/*.test.js",
     "check:lab-sync": "git diff --name-status --find-renames origin/main...HEAD | node scripts/check-lab-sync.js"
   },
   "devDependencies": {
     "@lhci/cli": "^0.15.1",
+    "docx": "^9.7.1",
     "http-server": "^14.1.1",
     "js-yaml": "^4.1.0",
     "pa11y-ci": "^4.1.1",
+    "pdfkit": "^0.19.1",
     "wait-on": "^7.2.0"
   }
 }
