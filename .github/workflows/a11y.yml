@@ -1,0 +1,33 @@
+name: Accessibility
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pa11y:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: "20"
+      - name: Install Node dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build site
+        run: bundle exec jekyll build
+      - name: Serve site
+        run: bundle exec jekyll serve --host 127.0.0.1 --port 4000 --detach
+      - name: Run pa11y-ci
+        run: npm run a11y
