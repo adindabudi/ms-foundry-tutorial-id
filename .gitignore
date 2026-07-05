@@ -1,0 +1,48 @@
+# Jekyll build output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Ruby
+.bundle/
+vendor/bundle/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test and browser artifacts
+test-results/
+playwright-report/
+.lighthouseci/
+.pa11yci-results/
+
+# Local generated drafts and internal planning/research
+docs/**
+.feed-build/
+dist/
+tmp/
+*.tmp
+*.log
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+
+# Local agent/tool state
+.claude/
+.superpowers/
+nul
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
