@@ -5,8 +5,8 @@ This file tracks visual provenance for Lab 101A.
 | Visual | Source | Status | Notes |
 | --- | --- | --- | --- |
 | Hero illustration | Azure `gpt-image-2` deployment, text-free prompt | Available | Stored at `assets/images/labs/foundry-101/hero-foundry-iq-agent.png`. Reviewed manually for no readable fake data or real logos. |
-| Knowledge source configuration screenshot | Microsoft Learn | Available as linked official image | `https://learn.microsoft.com/azure/search/media/get-started-portal-agentic-retrieval/create-knowledge-source.png` returned `image/png` during validation. |
-| Knowledge base configuration screenshot | Microsoft Learn | Gap | The documented image path did not return stable PNG during validation. Capture from portal with Playwright after tenant login. |
+| Knowledge source configuration screenshot | Microsoft Learn | Available locally | Stored at `labs/foundry-101a-corpus-foundry-iq/assets/mslearn-knowledge-source.png`. Source URL returned `image/png` during validation. |
+| Knowledge base configuration screenshot | Microsoft Learn | Available locally | Stored at `labs/foundry-101a-corpus-foundry-iq/assets/mslearn-knowledge-base.png`. Discovered from the Microsoft Learn page with Playwright and downloaded locally. |
 | Blob container upload screenshot | Portal capture needed | Gap | Capture after user signs in to Azure portal. Sanitize storage account and subscription. |
 | Knowledge base test/debug activity screenshot | Portal capture needed | Gap | Capture after corpus is indexed. Sanitize resource names and tenant info. |
 | Reimbursement form scan | Deterministic local generator | Available | Stored at `sample-data/contoso-indonesia/assets/FORM-reimburse-scan.png`. Generated with Pillow for readable text. |

@@ -188,7 +188,7 @@ Membuat knowledge source yang menghubungkan Blob container ke Azure AI Search / 
 
 Official Microsoft Learn screenshot:
 
-![Screenshot of Azure AI Search knowledge source configuration from Microsoft Learn.](https://learn.microsoft.com/azure/search/media/get-started-portal-agentic-retrieval/create-knowledge-source.png)
+![Screenshot of Azure AI Search knowledge source configuration from Microsoft Learn.](assets/mslearn-knowledge-source.png)
 
 Expected result: form knowledge source terbuka dan meminta nama, storage account, container, authentication, serta vectorizer.
 
@@ -256,7 +256,11 @@ Membuat knowledge base dari knowledge source, lalu menjalankan test retrieval se
 
 Expected result: knowledge base `contoso-employee-kb` berhasil dibuat dan siap dites.
 
-Screenshot status: Microsoft Learn menyediakan screenshot knowledge source yang valid. Screenshot knowledge base untuk tenant kamu sebaiknya diambil via Playwright/portal setelah login karena URL image Microsoft Learn untuk knowledge base saat dicek tidak mengembalikan PNG stabil.
+Official Microsoft Learn screenshot:
+
+![Screenshot of Azure AI Search knowledge base configuration from Microsoft Learn.](assets/mslearn-knowledge-base.png)
+
+Screenshot status: screenshot Microsoft Learn di atas menunjukkan shape umum form knowledge base. Screenshot tenant sendiri tetap perlu diambil via Playwright setelah login kalau ingin dokumentasi workshop menampilkan resource dan naming yang persis.
 
 #### 2. Test retrieval dengan pertanyaan validasi
 
