@@ -28,6 +28,8 @@ Use the PDF files for Foundry IQ / Azure AI Search indexing in the L100 portal l
 | `diagrams/reimburse-approval.mmd` | Mermaid source for the reimbursement approval flow. |
 | `assets/DIAGRAM-proses-persetujuan.svg` | SVG fallback for the reimbursement approval flow. |
 | `assets/FORM-reimburse-scan.png` | Fictional scanned reimbursement form generated deterministically with Pillow so text and fields remain readable. |
+| `assets/document-header.png` | Image-based document header embedded into generated PDFs to simulate exported/scanned document chrome. |
+| `assets/document-footer.png` | Image-based document footer embedded into generated PDFs to introduce realistic repeated footer noise. |
 
 ## Maintainer Regeneration
 
@@ -37,6 +39,6 @@ Regenerate DOCX, PDF, Markdown source, and diagram fallback assets with:
 npm run generate:corpus
 ```
 
-The generated PDF table renderer redraws table headers after page breaks. This is intentional because the finance policy is used to test whether retrieval can handle long tables that span pages.
+The generated PDF table renderer redraws table headers after page breaks. This is intentional because the finance policy is used to test whether retrieval can handle long tables that span pages. The document header is image-based and appears on opening/appendix pages; table continuation pages keep only repeated table headers. The footer is image-based and repeated across pages to simulate common export/scan noise.
 
 The conceptual hero illustration in the site was generated with the existing Azure `gpt-image-2` deployment through Microsoft Entra authentication because API-key local auth is disabled on the Azure AI Services resource used in this workspace. The reimbursement form image in this corpus is deterministic rather than model-generated because generated form text must not be treated as source-of-truth. Do not commit keys, tokens, tenant-specific values, or real business data.

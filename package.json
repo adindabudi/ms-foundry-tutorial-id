@@ -5,7 +5,7 @@
   "description": "Accessibility and content tooling for MS Foundry Tutorial ID.",
   "scripts": {
     "a11y": "pa11y-ci --config .pa11yci.json",
-    "generate:corpus": "node scripts/generate-contoso-corpus.mjs && python3 scripts/generate-contoso-form-image.py",
+    "generate:corpus": "python3 scripts/generate-contoso-document-chrome.py && python3 scripts/generate-contoso-form-image.py && node scripts/generate-contoso-corpus.mjs",
     "lighthouse": "lhci autorun",
     "test": "node --test scripts/*.test.js",
     "check:lab-sync": "git diff --name-status --find-renames origin/main...HEAD | node scripts/check-lab-sync.js"

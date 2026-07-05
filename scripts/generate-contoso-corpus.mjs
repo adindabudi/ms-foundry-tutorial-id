@@ -31,6 +31,8 @@ const DIRS = {
 
 for (const dir of Object.values(DIRS)) fs.mkdirSync(dir, { recursive: true });
 
+const HEADER_IMAGE = path.join(DIRS.assets, 'document-header.png');
+const FOOTER_IMAGE = path.join(DIRS.assets, 'document-footer.png');
 const border = { style: BorderStyle.SINGLE, size: 1, color: 'D0D7DE' };
 const cellBorders = { top: border, bottom: border, left: border, right: border };
 
@@ -172,13 +174,17 @@ function writeMarkdown(spec) {
   fs.writeFileSync(path.join(DIRS.source, `${spec.filename}.md`), lines.join('\n'), 'utf8');
 }
 
-function pdfHeader(doc, spec) {
-  doc.fontSize(9).fillColor('#4f5b66').text(`${spec.code} | ${spec.classification} | ${spec.effective}`, 48, 28);
-  doc.moveTo(48, 44).lineTo(564, 44).strokeColor('#d0d7de').stroke();
+function pdfHeader(doc) {
+  if (fs.existsSync(HEADER_IMAGE)) {
+    doc.image(HEADER_IMAGE, 42, 24, { width: 512 });
+  }
 }
 
 function pdfFooter(doc, spec, pageNumber) {
-  doc.fontSize(8).fillColor('#6a737d').text(`Contoso Indonesia | ${spec.owner} | Halaman ${pageNumber}`, 48, 760, { align: 'center', width: 516 });
+  if (fs.existsSync(FOOTER_IMAGE)) {
+    doc.image(FOOTER_IMAGE, 42, 733, { width: 512 });
+  }
+  doc.fontSize(8).fillColor('#6a737d').text(`Halaman ${pageNumber}`, 48, 760, { align: 'right', width: 516 });
 }
 
 function drawWrappedText(doc, text, x, y, width, options = {}) {
@@ -294,21 +300,22 @@ function drawImageAppendix(doc, spec) {
   const imagePath = path.join(DIRS.assets, spec.appendixImage);
   if (!fs.existsSync(imagePath)) return;
   doc.addPage();
-  doc.font('Helvetica-Bold').fontSize(15).fillColor('#0f3b61').text('Lampiran visual: contoh form klaim', 48, 64);
-  doc.font('Helvetica').fontSize(9).fillColor('#334155').text('Lampiran ini menggambarkan tantangan dokumen hasil scan: tabel, stamp, checklist, dan status approval dalam satu gambar.', 48, 90, { width: 500 });
-  doc.image(imagePath, 118, 126, { fit: [360, 520], align: 'center' });
+  pdfHeader(doc);
+  doc.font('Helvetica-Bold').fontSize(15).fillColor('#0f3b61').text('Lampiran visual: contoh form klaim', 48, 104);
+  doc.font('Helvetica').fontSize(9).fillColor('#334155').text('Lampiran ini menggambarkan tantangan dokumen hasil scan: tabel, stamp, checklist, dan status approval dalam satu gambar.', 48, 130, { width: 500 });
+  doc.image(imagePath, 118, 166, { fit: [360, 520], align: 'center' });
 }
 
 function writePdf(spec) {
   const out = path.join(DIRS.pdf, `${spec.filename}.pdf`);
   const doc = new PDFDocument({ size: 'A4', margin: 48, bufferPages: true });
   doc.pipe(fs.createWriteStream(out));
-  pdfHeader(doc, spec);
-  doc.fillColor('#111827').font('Helvetica-Bold').fontSize(20).text(spec.title, 48, 64, { width: 500 });
-  doc.font('Helvetica').fontSize(10).fillColor('#374151').text(`Kode: ${spec.code} | Owner: ${spec.owner} | Efektif: ${spec.effective}`, 48, 116);
+  pdfHeader(doc);
+  doc.fillColor('#111827').font('Helvetica-Bold').fontSize(20).text(spec.title, 48, 104, { width: 500 });
+  doc.font('Helvetica').fontSize(10).fillColor('#374151').text(`Kode: ${spec.code} | Owner: ${spec.owner} | Efektif: ${spec.effective}`, 48, 156);
   doc.moveDown();
-  doc.fontSize(10).fillColor('#111827').text(spec.intro, 48, 144, { width: 500, lineGap: 3 });
-  let y = 205;
+  doc.fontSize(10).fillColor('#111827').text(spec.intro, 48, 184, { width: 500, lineGap: 3 });
+  let y = 245;
   for (const section of spec.sections) {
     doc.font('Helvetica-Bold').fontSize(13).fillColor('#0f3b61').text(section.heading, 48, y);
     y += 20;
