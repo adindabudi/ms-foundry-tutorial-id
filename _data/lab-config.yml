@@ -1,0 +1,14 @@
+journeys:
+  foundry-101:
+    title: "Foundry 101"
+    description: "Portal-first prompt agent, Foundry IQ, validation, observability, and publish pilot readiness."
+    labs:
+      - foundry-101a-corpus-foundry-iq
+      - foundry-101b-prompt-agent-grounded-testing
+      - foundry-101c-validation-observability-versioning
+      - foundry-101d-publish-teams-m365
+levels:
+  L100: "Introductory"
+  L150: "Quality gate and pilot readiness"
+  L200: "Production readiness"
+  L300: "Advanced implementation"
