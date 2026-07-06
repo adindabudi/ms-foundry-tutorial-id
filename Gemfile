@@ -1,13 +1,13 @@
 source "https://rubygems.org"
 
 gem "jekyll", "~> 4.3"
-gem "minimal-mistakes-jekyll", "= 4.27.3"
 
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.15"
   gem "jekyll-sitemap", "~> 1.4"
   gem "jekyll-seo-tag", "~> 2.8"
   gem "jekyll-include-cache"
+  gem "jekyll-remote-theme"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
