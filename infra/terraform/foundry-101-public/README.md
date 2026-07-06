@@ -10,8 +10,9 @@ Terraform membuat satu resource group baru per tutorial level supaya cleanup sed
 - Microsoft Foundry account baru dengan `kind = AIServices`, `allowProjectManagement = true`, system-assigned managed identity, public network enabled, dan local auth disabled.
 - Foundry project baru di bawah account tersebut.
 - Model deployments untuk lab:
-  - chat: `gpt-4.1` by default.
-  - embedding: `text-embedding-3-small` by default.
+  - chat (agent Lab 101B): `gpt-4.1` by default.
+  - retrieval_chat (image verbalization knowledge source + planner knowledge base): `gpt-4o-mini` by default (portal-supported untuk agentic retrieval).
+  - embedding (vectorizer): `text-embedding-3-small` by default.
 - Azure AI Search service Standard dengan semantic ranker enabled, system-assigned managed identity, RBAC enabled, dan local auth disabled.
 - Storage account keyless untuk corpus, plus container `corpus` dan `asset-store`.
 - RBAC minimum untuk workshop keyless flow:

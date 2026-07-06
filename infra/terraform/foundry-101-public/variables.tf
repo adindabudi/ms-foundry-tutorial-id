@@ -91,7 +91,7 @@ variable "storage_containers" {
 }
 
 variable "model_deployments" {
-  description = "Model deployments created on the Foundry account. Override names, versions, SKU, and capacity per region/quota."
+  description = "Model deployments created on the Foundry account. `chat` = agent model (gpt-4.1); `retrieval_chat` = portal-supported chat model for knowledge source image verbalization and knowledge base planner (gpt-4o-mini); `embedding` = vectorizer. Override names, versions, SKU, and capacity per region/quota."
   type = map(object({
     deployment_name = string
     model_name      = string
@@ -105,6 +105,14 @@ variable "model_deployments" {
       deployment_name = "gpt-4.1"
       model_name      = "gpt-4.1"
       model_version   = "2025-04-14"
+      sku_name        = "GlobalStandard"
+      capacity        = 10
+    }
+
+    retrieval_chat = {
+      deployment_name = "gpt-4o-mini"
+      model_name      = "gpt-4o-mini"
+      model_version   = "2024-07-18"
       sku_name        = "GlobalStandard"
       capacity        = 10
     }

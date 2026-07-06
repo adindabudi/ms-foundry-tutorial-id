@@ -128,7 +128,7 @@ Untuk production atau workshop lanjutan yang benar-benar perlu mempertahankan ta
 - Azure AI Search service Basic tier atau lebih tinggi, dengan Semantic ranker enabled.
 - Storage account dan Blob container, atau izin membuat container.
 - Model deployment embedding yang digunakan adalah `text-embedding-3-small`. Terraform admin setup memakai deployment default `text-embedding-3-small` dengan SKU `GlobalStandard`.
-- LLM deployment yang didukung portal untuk planning/answer generation. Setup Terraform admin membuat deployment default `gpt-4.1`; trainer boleh mengganti via variable Terraform jika region/quota memakai model lain.
+- Chat model untuk agentic retrieval (image verbalization di knowledge source + planner di knowledge base) harus **didukung portal**: `gpt-4o`, `gpt-4o-mini`, `gpt-5`, `gpt-5-mini`, atau `gpt-5-nano`. Terraform admin setup membuat `gpt-4o-mini` untuk peran ini. Model agent (`gpt-4.1`, dipakai di Lab 101B) terpisah dan tidak dipakai untuk retrieval planning.
 
 ### Required RBAC
 
@@ -272,7 +272,7 @@ Gunakan nilai contoh berikut, sesuaikan dengan resource workshop:
 | Vectorizer kind | Microsoft Foundry | Pilih project dan embedding deployment. |
 | Embedding deployment | `text-embedding-3-small` atau deployment workshop | Harus sudah tersedia sebelum lab. |
 | Image verbalization | Aktif — `disableImageVerbalization` dibiarkan `false` | Corpus punya gambar (`FORM-reimburse-scan.png`), jadi teks/flow di dalam gambar ikut dideskripsikan dan diindeks. |
-| Chat completion model (image verbalization) | Microsoft Foundry, chat deployment yang **didukung portal** agentic retrieval | Model yang mendeskripsikan gambar jadi teks. Portal mendukung `gpt-4o`, `gpt-4o-mini`, `gpt-5`, `gpt-5-mini`, `gpt-5-nano` (bukan `gpt-4.1`). Search managed identity butuh `Cognitive Services User` di Foundry. |
+| Chat completion model (image verbalization) | Microsoft Foundry, `gpt-4o-mini` (portal-supported) | Model yang mendeskripsikan gambar jadi teks. Portal agentic retrieval mendukung `gpt-4o`, `gpt-4o-mini`, `gpt-5`, `gpt-5-mini`, `gpt-5-nano` (bukan `gpt-4.1`). Search managed identity butuh `Cognitive Services User` di Foundry. |
 
 Expected result: knowledge source berhasil dibuat dan portal mulai membuat generated objects seperti data source, skillset, index, dan indexer.
 
@@ -317,7 +317,7 @@ Membuat knowledge base dari knowledge source, lalu menjalankan test retrieval se
    ```
 
 4. Pada **Chat completion model**, pilih **Add model deployment**.
-5. Pilih **Microsoft Foundry**, subscription, project, dan LLM deployment yang tersedia.
+5. Pilih **Microsoft Foundry**, subscription, project, dan chat deployment yang **didukung portal** (workshop menyediakan `gpt-4o-mini`). `gpt-4.1` tidak muncul di sini karena bukan model portal agentic retrieval.
 6. Pada **Knowledge sources**, pilih:
 
    ```text
