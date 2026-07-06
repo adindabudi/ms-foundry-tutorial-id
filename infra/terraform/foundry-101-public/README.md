@@ -11,8 +11,8 @@ Terraform membuat satu resource group baru per tutorial level supaya cleanup sed
 - Foundry project baru di bawah account tersebut.
 - Model deployments untuk lab:
   - chat: `gpt-4o-mini` by default.
-  - embedding: `text-embedding-3-small` by default.
-- Azure AI Search service Standard dengan system-assigned managed identity, RBAC enabled, dan local auth disabled.
+  - embedding: `text-embedding-3-large` by default.
+- Azure AI Search service Standard dengan semantic ranker enabled, system-assigned managed identity, RBAC enabled, dan local auth disabled.
 - Storage account keyless untuk corpus, plus container `corpus` dan `asset-store`.
 - RBAC minimum untuk workshop keyless flow:
   - Search managed identity -> Storage Blob Data Contributor pada storage account.
@@ -71,13 +71,13 @@ terraform output model_deployments
 Default tutorial references:
 
 - Chat completion deployment: `gpt-4o-mini`.
-- Embedding deployment: `text-embedding-3-small`.
+- Embedding deployment: `text-embedding-3-large`.
 - Blob container untuk corpus: `corpus`.
 - Blob container untuk extracted/image assets: `asset-store`.
 
 ## Upload corpus workshop
 
-Jalankan dari folder Terraform setelah `terraform apply` selesai:
+Jalankan dari folder Terraform setelah `terraform apply` selesai. Command default mengupload PDF core dan satu scanned-form PNG. Asset generator seperti `document-header.png`, `document-footer.png`, dan SVG source tidak diupload otomatis karena file tersebut dapat menghasilkan warning indexer yang tidak relevan untuk smoke test workshop.
 
 ```bash
 $(terraform output -raw corpus_upload_command)

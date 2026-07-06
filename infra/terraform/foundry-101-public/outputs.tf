@@ -35,7 +35,7 @@ output "search_endpoint" {
 
 output "storage_account_name" {
   description = "Storage account for the tutorial corpus."
-  value       = azurerm_storage_account.corpus.name
+  value       = azapi_resource.storage_account.name
 }
 
 output "storage_container_names" {
@@ -57,8 +57,8 @@ output "model_deployments" {
 }
 
 output "corpus_upload_command" {
-  description = "Azure CLI command for an admin or trainer to upload the generated corpus with Entra ID."
-  value       = "az storage blob upload-batch --auth-mode login --account-name ${azurerm_storage_account.corpus.name} --destination corpus --source ../../../sample-data/contoso-indonesia/pdf --overwrite"
+  description = "Azure CLI command for an admin or trainer to upload the core generated corpus with Entra ID."
+  value       = "az storage blob upload-batch --auth-mode login --account-name ${azapi_resource.storage_account.name} --destination corpus --source ../../../sample-data/contoso-indonesia/pdf --overwrite && az storage blob upload --auth-mode login --account-name ${azapi_resource.storage_account.name} --container-name corpus --name FORM-reimburse-scan.png --file ../../../sample-data/contoso-indonesia/assets/FORM-reimburse-scan.png --overwrite"
 }
 
 output "cleanup_command" {

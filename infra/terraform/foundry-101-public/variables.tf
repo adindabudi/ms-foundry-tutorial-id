@@ -67,7 +67,7 @@ variable "foundry_sku_name" {
 }
 
 variable "search_sku" {
-  description = "Azure AI Search SKU. Agentic retrieval requires Basic or higher; Standard is recommended for workshops."
+  description = "Azure AI Search SKU. Agentic retrieval requires Basic or higher; Standard is recommended for workshops and semantic ranker is enabled separately."
   type        = string
   default     = "standard"
 }
@@ -110,8 +110,8 @@ variable "model_deployments" {
     }
 
     embedding = {
-      deployment_name = "text-embedding-3-small"
-      model_name      = "text-embedding-3-small"
+      deployment_name = "text-embedding-3-large"
+      model_name      = "text-embedding-3-large"
       model_version   = "1"
       sku_name        = "Standard"
       capacity        = 10

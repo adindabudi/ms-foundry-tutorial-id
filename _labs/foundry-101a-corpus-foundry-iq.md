@@ -91,9 +91,9 @@ flowchart LR
 
 - Akses ke Microsoft Foundry portal dan Azure portal.
 - Foundry project yang sudah tersedia.
-- Azure AI Search service Basic tier atau lebih tinggi.
+- Azure AI Search service Basic tier atau lebih tinggi, dengan Semantic ranker enabled.
 - Storage account dan Blob container, atau izin membuat container.
-- Model embedding yang sudah deployed. Setup Terraform admin di `infra/terraform/foundry-101-public` membuat deployment default `text-embedding-3-small`.
+- Model embedding yang sudah deployed. Setup Terraform admin di `infra/terraform/foundry-101-public` membuat deployment default `text-embedding-3-large`.
 - LLM deployment yang didukung portal untuk planning/answer generation. Setup Terraform admin membuat deployment default `gpt-4o-mini`; trainer boleh mengganti via variable Terraform jika region/quota memakai model lain.
 
 ### Required RBAC
@@ -238,7 +238,7 @@ Gunakan nilai contoh berikut, sesuaikan dengan resource workshop:
 | Container | `contoso-employee-corpus` | Container dari Use Case #1. |
 | Authentication | Managed identity | Gunakan system-assigned identity bila workshop setup mendukung. |
 | Vectorizer kind | Microsoft Foundry | Pilih project dan embedding deployment. |
-| Embedding deployment | `text-embedding-3-small` atau deployment workshop | Harus sudah tersedia sebelum lab. |
+| Embedding deployment | `text-embedding-3-large` atau deployment workshop | Harus sudah tersedia sebelum lab. |
 
 Expected result: knowledge source berhasil dibuat dan portal mulai membuat generated objects seperti data source, skillset, index, dan indexer.
 

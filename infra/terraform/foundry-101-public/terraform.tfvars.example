@@ -22,8 +22,8 @@ resource_prefix = "ms-foundry"
 #   }
 #
 #   embedding = {
-#     deployment_name = "text-embedding-3-small"
-#     model_name      = "text-embedding-3-small"
+#     deployment_name = "text-embedding-3-large"
+#     model_name      = "text-embedding-3-large"
 #     model_version   = "1"
 #     sku_name        = "Standard"
 #     capacity        = 10

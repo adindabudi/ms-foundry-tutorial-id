@@ -103,6 +103,7 @@ resource "azurerm_search_service" "search" {
   resource_group_name           = azurerm_resource_group.this.name
   location                      = azurerm_resource_group.this.location
   sku                           = var.search_sku
+  semantic_search_sku           = "standard"
   replica_count                 = var.search_replica_count
   partition_count               = var.search_partition_count
   public_network_access_enabled = true
@@ -114,28 +115,26 @@ resource "azurerm_search_service" "search" {
   }
 }
 
-resource "azurerm_storage_account" "corpus" {
-  name                             = local.storage_account_name
-  resource_group_name              = azurerm_resource_group.this.name
-  location                         = azurerm_resource_group.this.location
-  account_tier                     = "Standard"
-  account_replication_type         = "LRS"
-  account_kind                     = "StorageV2"
-  min_tls_version                  = "TLS1_2"
-  public_network_access_enabled    = true
-  allow_nested_items_to_be_public  = false
-  shared_access_key_enabled        = false
-  default_to_oauth_authentication  = true
-  cross_tenant_replication_enabled = false
-  tags                             = local.common_tags
+resource "azapi_resource" "storage_account" {
+  type      = "Microsoft.Storage/storageAccounts@2023-05-01"
+  name      = local.storage_account_name
+  parent_id = azurerm_resource_group.this.id
+  location  = azurerm_resource_group.this.location
+  tags      = local.common_tags
 
-  blob_properties {
-    delete_retention_policy {
-      days = 7
+  body = {
+    kind = "StorageV2"
+    sku = {
+      name = "Standard_LRS"
     }
-
-    container_delete_retention_policy {
-      days = 7
+    properties = {
+      allowBlobPublicAccess        = false
+      allowCrossTenantReplication  = false
+      allowSharedKeyAccess         = false
+      defaultToOAuthAuthentication = true
+      minimumTlsVersion            = "TLS1_2"
+      publicNetworkAccess          = "Enabled"
+      supportsHttpsTrafficOnly     = true
     }
   }
 }
@@ -145,7 +144,7 @@ resource "azapi_resource" "storage_containers" {
 
   type      = "Microsoft.Storage/storageAccounts/blobServices/containers@2023-05-01"
   name      = each.value
-  parent_id = "${azurerm_storage_account.corpus.id}/blobServices/default"
+  parent_id = "${azapi_resource.storage_account.id}/blobServices/default"
 
   body = {
     properties = {

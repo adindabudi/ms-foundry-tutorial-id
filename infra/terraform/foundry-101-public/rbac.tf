@@ -33,7 +33,7 @@ locals {
       }
       "${principal_id}-storage-blob-data-contributor" = {
         principal_id         = principal_id
-        scope                = azurerm_storage_account.corpus.id
+        scope                = azapi_resource.storage_account.id
         role_definition_name = var.role_names.storage_blob_data_contributor
       }
     }
@@ -43,7 +43,7 @@ locals {
 }
 
 resource "azurerm_role_assignment" "search_to_storage" {
-  scope                            = azurerm_storage_account.corpus.id
+  scope                            = azapi_resource.storage_account.id
   role_definition_name             = var.role_names.storage_blob_data_contributor
   principal_id                     = azurerm_search_service.search.identity[0].principal_id
   principal_type                   = "ServicePrincipal"
