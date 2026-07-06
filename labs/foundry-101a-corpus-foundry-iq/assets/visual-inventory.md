@@ -7,7 +7,7 @@ This file tracks visual provenance for Lab 101A.
 | Hero illustration | Azure `gpt-image-2` deployment, text-free prompt | Available | Stored at `assets/images/labs/foundry-101/hero-foundry-iq-agent.png`. Reviewed manually for no readable fake data or real logos. |
 | Knowledge source configuration screenshot | Microsoft Learn | Available locally | Stored at `labs/foundry-101a-corpus-foundry-iq/assets/mslearn-knowledge-source.png`. Source URL returned `image/png` during validation. |
 | Knowledge base configuration screenshot | Microsoft Learn | Available locally | Stored at `labs/foundry-101a-corpus-foundry-iq/assets/mslearn-knowledge-base.png`. Discovered from the Microsoft Learn page with Playwright and downloaded locally. |
-| Blob container upload screenshot | Azure portal (manual capture) | Gap | Placeholder di doc. Screenshot manual lalu simpan sebagai `portal-storage-containers.jpg`. |
+| Blob container upload screenshot | Azure portal (manual capture) | Available locally | Stored at `portal-storage-containers.png`. Sanitized: account/RG/subscription hidden. |
 | Knowledge sources list screenshot | Azure portal (manual capture) | Gap | Placeholder di doc. Screenshot manual lalu simpan sebagai `portal-knowledge-sources-list.jpg`. |
 | Add knowledge source menu screenshot | Azure portal (manual capture) | Gap | Placeholder di doc. Screenshot manual lalu simpan sebagai `portal-add-knowledge-source-menu.jpg`. |
 | Create knowledge source form screenshot | Azure portal (manual capture) | Gap | Placeholder di doc. Screenshot manual lalu simpan sebagai `portal-create-knowledge-source-form.jpg`. |

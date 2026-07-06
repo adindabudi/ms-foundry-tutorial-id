@@ -200,7 +200,7 @@ Expected result: kamu tahu file mana yang akan masuk Blob container dan kenapa f
 2. Buka Storage account yang disediakan workshop.
 3. Pilih **Data storage** > **Containers**.
 
-   _Placeholder screenshot: blade Containers dengan aksi Add container dan Upload — tangkap manual dari portal._
+   ![Azure portal Containers blade showing Add container and Upload actions.](assets/portal-storage-containers.png)
 
 4. Buat container baru, misalnya:
 
