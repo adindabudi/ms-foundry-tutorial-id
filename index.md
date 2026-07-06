@@ -13,7 +13,7 @@ Workshop Microsoft Foundry berbahasa Indonesia. Halaman ini sengaja langsung men
 	<div><strong>160</strong><span>menit inti</span></div>
 </div>
 
-## Current Module
+## Core Modules
 
 <section class="module-index-grid" aria-label="Available modules">
 	<article class="module-index-card">
@@ -26,13 +26,9 @@ Workshop Microsoft Foundry berbahasa Indonesia. Halaman ini sengaja langsung men
 			<li><a href="{{ site.baseurl }}/labs/foundry-101c-validation-observability-versioning/">101C: Validation, Observability, dan Versioning</a></li>
 			<li><a href="{{ site.baseurl }}/labs/foundry-101d-publish-teams-m365/">101D: Publish ke Teams/M365 Pilot</a></li>
 		</ol>
-		<a class="module-index-action" href="{{ site.baseurl }}/modules/foundry-101/">Open module</a>
+		<div class="module-index-actions">
+			<a class="module-index-action" href="{{ site.baseurl }}/labs/foundry-101a-corpus-foundry-iq/">Start Lab 101A</a>
+			<a class="module-index-link" href="{{ site.baseurl }}/modules/foundry-101/">View module overview</a>
+		</div>
 	</article>
 </section>
-
-## Content Standard
-
-- Portal-first untuk L100.
-- Visual-heavy dengan diagram, screenshot, dan expected result.
-- Jujur terhadap status GA, Preview, Partial GA, dan Early Access Preview.
-- Sample data fiktif tetapi realistis untuk challenge dokumen enterprise.

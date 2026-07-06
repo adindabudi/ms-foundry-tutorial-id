@@ -664,6 +664,14 @@ p > code, li > code, td > code {
   padding-left: 1.25rem;
 }
 
+.module-index-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
 .module-index-action {
   display: inline-flex;
   align-items: center;
@@ -681,6 +689,21 @@ p > code, li > code, td > code {
 .module-index-action:focus-visible {
   background: var(--color-accent-hover);
   color: var(--color-accent-on) !important;
+}
+
+.module-index-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  color: var(--color-accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.module-index-link:hover,
+.module-index-link:focus-visible {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
 }
 
 @media (max-width: 720px) {
