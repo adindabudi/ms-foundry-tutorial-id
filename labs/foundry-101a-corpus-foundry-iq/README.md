@@ -245,11 +245,11 @@ Membuat knowledge source yang menghubungkan Blob container ke Azure AI Search / 
 
    _Placeholder screenshot: blade Knowledge sources dengan aksi Add knowledge source — tangkap manual dari portal._
 
-   _Placeholder screenshot: dropdown Add knowledge source (opsi Add knowledge source dan JSON) — tangkap manual dari portal._
+   ![Azure portal Add knowledge source dropdown showing Add knowledge source and JSON options.](assets/portal-add-knowledge-source-menu.png)
 
 4. Pilih **Azure blob (Indexed)**.
 
-   _Placeholder screenshot: pane Create knowledge source dengan opsi source type — tangkap manual dari portal._
+   ![Azure portal Create knowledge source pane showing source type options.](assets/portal-create-knowledge-source-form.png)
 
 Official Microsoft Learn screenshot:
 

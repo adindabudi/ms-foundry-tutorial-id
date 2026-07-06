@@ -9,8 +9,8 @@ This file tracks visual provenance for Lab 101A.
 | Knowledge base configuration screenshot | Microsoft Learn | Available locally | Stored at `labs/foundry-101a-corpus-foundry-iq/assets/mslearn-knowledge-base.png`. Discovered from the Microsoft Learn page with Playwright and downloaded locally. |
 | Blob container upload screenshot | Azure portal (manual capture) | Available locally | Stored at `portal-storage-containers.png`. Sanitized: account/RG/subscription hidden. |
 | Knowledge sources list screenshot | Azure portal (manual capture) | Gap | Placeholder di doc. Screenshot manual lalu simpan sebagai `portal-knowledge-sources-list.jpg`. |
-| Add knowledge source menu screenshot | Azure portal (manual capture) | Gap | Placeholder di doc. Screenshot manual lalu simpan sebagai `portal-add-knowledge-source-menu.jpg`. |
-| Create knowledge source form screenshot | Azure portal (manual capture) | Gap | Placeholder di doc. Screenshot manual lalu simpan sebagai `portal-create-knowledge-source-form.jpg`. |
+| Add knowledge source menu screenshot | Azure portal (manual capture) | Available locally | Stored at `portal-add-knowledge-source-menu.png`. Sanitized: service/RG/subscription hidden. |
+| Create knowledge source form screenshot | Azure portal (manual capture) | Available locally | Stored at `portal-create-knowledge-source-form.png`. Sanitized: service/RG/subscription hidden. |
 | Knowledge bases list screenshot | Azure portal (manual capture) | Gap | Placeholder di doc. Screenshot manual lalu simpan sebagai `portal-knowledge-bases-list.jpg`. |
 | Add knowledge base menu screenshot | Azure portal (manual capture) | Gap | Placeholder di doc. Screenshot manual lalu simpan sebagai `portal-add-knowledge-base-menu.jpg`. |
 | Create knowledge base form screenshot | Azure portal (manual capture) | Gap | Placeholder di doc. Screenshot manual lalu simpan sebagai `portal-create-knowledge-base-form.jpg`. |
