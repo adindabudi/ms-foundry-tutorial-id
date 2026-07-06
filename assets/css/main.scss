@@ -558,6 +558,28 @@ p > code, li > code, td > code {
   border: 1px solid var(--color-border);
 }
 
+.mermaid-diagram {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg-elevated);
+  overflow-x: auto;
+}
+
+.mermaid-diagram svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.mermaid-load-failed .mermaid-diagram {
+  white-space: pre;
+  font-family: $monospace;
+  font-size: 0.85em;
+}
+
 // ---------------------------------------------------------------------------
 // Hero overlay (homepage)
 // ---------------------------------------------------------------------------

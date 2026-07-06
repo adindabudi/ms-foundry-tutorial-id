@@ -67,6 +67,8 @@ Di Microsoft Foundry, Foundry IQ menyediakan knowledge base yang dapat dipakai o
 | Vectorizer | Konfigurasi embedding model untuk mengubah teks menjadi vector yang bisa dicari secara semantic/hybrid. |
 | Activity log / debug output | Bukti apakah query planning dan retrieval berjalan, sumber mana yang dipakai, dan apakah ada failure. |
 
+### Diagram: Alur Corpus ke Knowledge Base
+
 ```mermaid
 flowchart LR
     A[Contoso corpus PDFs + images] --> B[Azure Blob Storage container]
@@ -76,6 +78,8 @@ flowchart LR
     E --> F[Test retrieve request]
     F --> G[Prompt agent in Lab 101B]
 ```
+
+Diagram ini menunjukkan dependency utama sebelum agent dibuat: dokumen harus masuk Blob Storage, knowledge source membuat pipeline indexing, lalu knowledge base diuji sebelum dipakai oleh prompt agent.
 
 ## Documentation and Additional Training Links
 

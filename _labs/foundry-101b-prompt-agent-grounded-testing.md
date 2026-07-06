@@ -55,6 +55,8 @@ Di Lab 101A, kamu menyiapkan knowledge base. Di lab ini, kamu membuat agent **As
 | Playground | Tempat cepat untuk test multi-turn conversation dan iterasi instructions. |
 | Save / version | Perubahan agent harus disimpan agar bisa diuji, dibandingkan, dan dipakai oleh endpoint/publish flow. |
 
+### Diagram: Alur Prompt Agent ke Grounded Answer
+
 ```mermaid
 flowchart LR
     A[Model deployment] --> D[Prompt agent]
@@ -63,6 +65,8 @@ flowchart LR
     D --> E[Agents playground]
     E --> F[Grounded answer + citations]
 ```
+
+Diagram ini menunjukkan tiga input utama prompt agent: model deployment, instructions, dan Foundry IQ knowledge base. Playground dipakai untuk membuktikan jawaban grounded sebelum lanjut ke validation gate.
 
 ## Documentation and Additional Training Links
 
