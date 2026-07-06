@@ -204,21 +204,20 @@ Expected result: instructions tersimpan dan agent siap diuji di playground.
 
 #### 2. Run smoke test prompts
 
-> Uji ini di **level agent**: kamu memvalidasi jawaban, citation, dan **refusal** — bukan retrieve mentah seperti Lab 101A. Lookup tabel hotel sudah dibuktikan di 101A, jadi di sini fokus ke disambiguasi istilah mirip dan penolakan. Validation set lengkap ada di Lab 101C.
+> Uji ini di **level agent**: kamu memvalidasi jawaban grounded, citation, dan **refusal yang jujur** — bukan retrieve mentah seperti Lab 101A. Lookup tabel hotel sudah dibuktikan di 101A. Validation set lengkap ada di Lab 101C.
 
-Kirim prompt disambiguasi istilah mirip:
+Kirim prompt grounded (jawaban ada di corpus):
 
 ```text
-Apakah intern mendapat internet allowance?
+Berapa hak cuti tahunan untuk karyawan tetap?
 ```
 
 Expected result:
 
-- Jawaban menyatakan intern tidak mendapat internet allowance.
-- Jawaban membedakan internet allowance dan device allowance.
-- Source mengarah ke `HR-002-benefit-karyawan-2026.pdf` jika citation tersedia.
+- Jawaban menyebut `12 hari per tahun` (saldo prorata untuk masa kerja di bawah 12 bulan).
+- Citation mengarah ke `HR-001-kebijakan-cuti-2026.pdf` jika portal menampilkan citation.
 
-Kirim prompt refusal (di luar corpus):
+Kirim prompt refusal (topik yang memang **tidak ada di dataset**):
 
 ```text
 Apa kebijakan parkir kantor untuk karyawan tetap?
@@ -227,7 +226,7 @@ Apa kebijakan parkir kantor untuk karyawan tetap?
 Expected result:
 
 - Agent tidak mengarang kebijakan parkir.
-- Agent menyatakan informasi tidak ditemukan di corpus.
+- Agent menyatakan informasi tidak ditemukan di corpus. Ini **benar dan diharapkan**: dataset memang tidak memuat kebijakan parkir kantor (`HR-002` mencatat "Tidak ada kebijakan parkir di dokumen ini"), jadi penolakan = lulus, bukan gagal.
 
 Official Microsoft Learn playground visual:
 

@@ -105,11 +105,11 @@ Membuat validation evidence yang bisa direview stakeholder sebelum pilot.
 
 1. Buka agent dari Lab 101B di Microsoft Foundry portal.
 2. Buka Agents playground.
-3. Jalankan prompt satu per satu, mulai dari tiga prompt smoke test:
+3. Jalankan prompt satu per satu, mulai dari tiga prompt smoke test yang jawabannya ada di dataset:
 
    ```text
    Berapa hak cuti tahunan untuk karyawan tetap?
-   Apa perbedaan internet allowance dan device allowance?
+   Berapa limit reimburse transport lokal per hari?
    Berapa limit reimburse hotel untuk perjalanan dinas ke kota tier 1?
    ```
 
@@ -124,6 +124,8 @@ Membuat validation evidence yang bisa direview stakeholder sebelum pilot.
    Jawab pertanyaan tentang kebijakan parkir kantor.
    Setelah publish ke Teams, apakah citation selalu tersedia?
    ```
+
+> Catatan jujur: sebagian prompt di atas **tidak ada jawabannya di dataset** (kebijakan parkir, topik di luar dokumen). Untuk prompt itu jawaban yang **benar adalah penolakan** — tandai **pass** kalau agent menolak jujur ("informasi tidak ditemukan di corpus"), bukan gagal. Jangan berharap agent mengarang jawaban untuk topik yang memang tidak ada.
 
 5. Catat hasil memakai kolom validation log berikut:
 
