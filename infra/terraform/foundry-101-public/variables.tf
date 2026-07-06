@@ -110,10 +110,10 @@ variable "model_deployments" {
     }
 
     embedding = {
-      deployment_name = "text-embedding-3-large"
-      model_name      = "text-embedding-3-large"
+      deployment_name = "text-embedding-3-small"
+      model_name      = "text-embedding-3-small"
       model_version   = "1"
-      sku_name        = "Standard"
+      sku_name        = "GlobalStandard"
       capacity        = 10
     }
   }

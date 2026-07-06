@@ -29,6 +29,7 @@ Lab ini menyiapkan corpus fiktif Contoso Indonesia dan knowledge base Foundry IQ
 - [Why This Matters](#why-this-matters)
 - [Introduction](#introduction)
 - [Core Concepts Overview](#core-concepts-overview)
+- [Data yang Dipakai](#data-yang-dipakai)
 - [Documentation and Additional Training Links](#documentation-and-additional-training-links)
 - [Prerequisites](#prerequisites)
 - [Summary of Targets](#summary-of-targets)
@@ -81,6 +82,32 @@ flowchart LR
 
 Diagram ini menunjukkan dependency utama sebelum agent dibuat: dokumen harus masuk Blob Storage, knowledge source membuat pipeline indexing, lalu knowledge base diuji sebelum dipakai oleh prompt agent.
 
+## Data yang Dipakai
+
+Corpus Contoso Indonesia sengaja dibuat seperti dokumen enterprise yang sering membuat retrieval salah: ada PDF dengan tabel panjang, tabel yang pecah halaman, flowchart visual, form reimburse hasil scan/gambar, dan istilah benefit yang mirip.
+
+| File | Dipakai di lab? | Retrieval challenge |
+| --- | --- | --- |
+| `HR-001-kebijakan-cuti-2026.pdf` | Ya | Policy HR multi-halaman untuk lookup entitlement cuti dan edge case karyawan. |
+| `HR-002-benefit-karyawan-2026.pdf` | Ya | Benefit dengan istilah mirip seperti internet allowance vs device allowance, plus explicit gap untuk kebijakan parkir. |
+| `FIN-001-reimburse-dan-perjalanan-dinas.pdf` | Ya | Tabel limit reimburse panjang, role `Staff` vs `Manager+`, tier kota, approval threshold, dan flowchart approval. |
+| `FORM-reimburse-scan.png` | Ya | Contoh scanned/noisy form supaya peserta melihat behavior image verbalization dan OCR/verbalized image text. |
+| `docx/*.docx` | Tidak untuk L100 default | Source editable untuk maintainer/trainer. Upload DOCX hanya jika trainer ingin membandingkan behavior format dokumen. |
+
+### Chunking dan PDF table strategy
+
+MS Learn menyarankan chunking karena model embedding seperti `text-embedding-3-small` punya batas input 8.191 token, dan chunking juga mencegah informasi hilang karena truncation. Untuk custom pipeline, starting point umum adalah Text Split `pages` dengan `maximumPageLength` sekitar 2.000 karakter dan `pageOverlapLength` sekitar 500 karakter; dokumen yang sangat terstruktur bisa butuh overlap lebih kecil, sedangkan narasi panjang bisa butuh overlap lebih besar.
+
+Untuk lab portal-first ini, peserta tidak membuat skillset manual. Blob knowledge source akan membuat data source, skillset, indexer, dan index secara terkelola. Karena corpus punya tabel PDF yang pecah halaman, expected check-nya bukan hanya “indexer success”, tetapi juga prompt validasi yang memaksa row lookup, misalnya `Hotel + Tier 1 + Staff + Limit`. Kalau lookup tabel salah, perbaiki corpus atau prompt retrieval pattern sebelum membuat agent terlihat “selesai”.
+
+### Image verbalization dan image serving
+
+Lab ini memakai image verbalization untuk visual yang bisa diekstrak: knowledge source memiliki `chatCompletionModel`, `disableImageVerbalization` dibiarkan `false`, dan image/flowchart dapat menjadi deskripsi teks yang ikut diindeks. Ini cukup untuk L100 karena peserta hanya perlu membuktikan jawaban grounded dari corpus kecil.
+
+Image serving berbeda dari image verbalization. Image serving membutuhkan `assetStore` pada knowledge source dan `enableImageServing` pada knowledge base agar Azure AI Search menyimpan image artifact di Blob dan mengirim image yang relevan ke answer synthesis. Fitur ini masih preview, menambah latency/biaya, dan perlu RBAC tambahan ke asset store. Terraform admin setup sudah membuat container `asset-store` untuk trainer yang ingin mencoba path ini, tetapi lab default tidak mewajibkan image serving.
+
+Untuk production atau workshop lanjutan yang benar-benar perlu mempertahankan tabel lintas halaman, bounding box, dan struktur layout, MS Learn merekomendasikan mempertimbangkan Azure Content Understanding skill karena mendukung semantic chunking, cross-page table extraction, dan AI-generated image descriptions. Lab 101A tetap memakai managed Blob knowledge source agar peserta L100 fokus pada portal flow dan validation evidence.
+
 ## Documentation and Additional Training Links
 
 - [What is Foundry IQ?](https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-foundry-iq)
@@ -88,6 +115,9 @@ Diagram ini menunjukkan dependency utama sebelum agent dibuat: dokumen harus mas
 - [Agentic retrieval in Azure AI Search](https://learn.microsoft.com/azure/search/agentic-retrieval-overview)
 - [Connect a Foundry IQ knowledge base to Foundry Agent Service](https://learn.microsoft.com/azure/foundry/agents/how-to/foundry-iq-connect)
 - [Role-based access control in the Foundry portal](https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry)
+- [Chunk large documents for RAG and vector search](https://learn.microsoft.com/azure/search/vector-search-how-to-chunk-documents)
+- [Multimodal search in Azure AI Search](https://learn.microsoft.com/azure/search/multimodal-search-overview)
+- [Surface document-embedded images in agentic retrieval](https://learn.microsoft.com/azure/search/agentic-retrieval-how-to-image-serving)
 
 ## Prerequisites
 
@@ -97,7 +127,7 @@ Diagram ini menunjukkan dependency utama sebelum agent dibuat: dokumen harus mas
 - Foundry project yang sudah tersedia.
 - Azure AI Search service Basic tier atau lebih tinggi, dengan Semantic ranker enabled.
 - Storage account dan Blob container, atau izin membuat container.
-- Model embedding yang sudah deployed. Setup Terraform admin di `infra/terraform/foundry-101-public` membuat deployment default `text-embedding-3-large`.
+- Model deployment embedding yang digunakan adalah `text-embedding-3-small`. Terraform admin setup memakai deployment default `text-embedding-3-small` dengan SKU `GlobalStandard`.
 - LLM deployment yang didukung portal untuk planning/answer generation. Setup Terraform admin membuat deployment default `gpt-4.1`; trainer boleh mengganti via variable Terraform jika region/quota memakai model lain.
 
 ### Required RBAC
@@ -242,7 +272,7 @@ Gunakan nilai contoh berikut, sesuaikan dengan resource workshop:
 | Container | `contoso-employee-corpus` | Container dari Use Case #1. |
 | Authentication | Managed identity | Gunakan system-assigned identity bila workshop setup mendukung. |
 | Vectorizer kind | Microsoft Foundry | Pilih project dan embedding deployment. |
-| Embedding deployment | `text-embedding-3-large` atau deployment workshop | Harus sudah tersedia sebelum lab. |
+| Embedding deployment | `text-embedding-3-small` atau deployment workshop | Harus sudah tersedia sebelum lab. |
 
 Expected result: knowledge source berhasil dibuat dan portal mulai membuat generated objects seperti data source, skillset, index, dan indexer.
 
