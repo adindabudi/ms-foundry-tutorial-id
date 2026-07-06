@@ -121,12 +121,15 @@ Membuat prompt agent portal-first di Microsoft Foundry.
    asisten-karyawan-contoso
    ```
 
-7. Pilih model deployment yang disediakan workshop.
+7. Pada pilihan model, **pilih deployment `gpt-4.1` yang sudah disediakan admin**. Jangan biarkan portal auto-deploy model default baru (misalnya `o3`).
 
-Expected result: agent baru terbuka di agent builder / playground setup pane.
+Expected result: agent baru terbuka di agent builder / playground setup pane memakai `gpt-4.1`.
 
 > [!IMPORTANT]
 > Nama agent tidak selalu bisa diganti setelah dibuat. Gunakan nama yang stabil dan tidak mengandung data tenant/customer.
+
+> [!WARNING]
+> Kalau muncul error `AuthorizationFailed ... Microsoft.CognitiveServices/accounts/deployments/write ... deployments/o3`, artinya portal mencoba **men-deploy model baru** (mis. `o3`), bukan memakai yang sudah ada. Membuat deployment adalah tugas admin dan sengaja tidak diberikan ke peserta (least-privilege). Fix: pilih deployment yang sudah tersedia (`gpt-4.1` atau `gpt-4o-mini`), bukan model default yang belum di-deploy.
 
 Cost implication: membuat agent biasanya tidak mahal sendiri, tetapi test chat akan memakai token model. Jangan jalankan batch prompt besar di L100.
 
