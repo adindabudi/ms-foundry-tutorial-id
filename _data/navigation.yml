@@ -1,5 +1,7 @@
 main:
   - title: "Home"
     url: /
+  - title: "Dataset"
+    url: /dataset/
   - title: "About"
     url: /about/
