@@ -222,6 +222,18 @@ Expected result:
 - Jawaban menyebut `12 hari per tahun` (saldo prorata untuk masa kerja di bawah 12 bulan).
 - Citation mengarah ke `HR-001-kebijakan-cuti-2026.pdf` jika portal menampilkan citation.
 
+Kirim prompt grounded kedua (istilah mirip — internet allowance vs device allowance):
+
+```text
+Berapa internet allowance per bulan dan siapa yang berhak menerimanya?
+```
+
+Expected result:
+
+- Jawaban menyebut `Rp350.000 per bulan`, hanya untuk karyawan tetap dan kontrak yang bekerja hybrid atau remote dengan bukti tagihan, dan intern tidak berhak.
+- Agent membedakan internet allowance (biaya langganan internet bulanan) dari device allowance (pembelian perangkat pendukung), sesuai `HR-002-benefit-karyawan-2026.pdf`.
+- Ini sengaja menguji retrieval pada istilah mirip. Kalau agent tertukar internet vs device, perbaiki corpus atau prompt sebelum lanjut.
+
 Kirim prompt refusal (topik yang memang **tidak ada di dataset**):
 
 ```text
