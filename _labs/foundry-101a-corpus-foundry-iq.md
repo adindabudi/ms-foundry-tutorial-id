@@ -94,7 +94,7 @@ flowchart LR
 - Azure AI Search service Basic tier atau lebih tinggi, dengan Semantic ranker enabled.
 - Storage account dan Blob container, atau izin membuat container.
 - Model embedding yang sudah deployed. Setup Terraform admin di `infra/terraform/foundry-101-public` membuat deployment default `text-embedding-3-large`.
-- LLM deployment yang didukung portal untuk planning/answer generation. Setup Terraform admin membuat deployment default `gpt-4o-mini`; trainer boleh mengganti via variable Terraform jika region/quota memakai model lain.
+- LLM deployment yang didukung portal untuk planning/answer generation. Setup Terraform admin membuat deployment default `gpt-4.1`; trainer boleh mengganti via variable Terraform jika region/quota memakai model lain.
 
 ### Required RBAC
 

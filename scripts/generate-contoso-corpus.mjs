@@ -118,6 +118,11 @@ const documents = [
       'Dokumen ini berisi aturan klaim biaya operasional dan perjalanan dinas. Tabel limit sengaja dibuat panjang agar PDF pecah halaman dan header tabel harus berulang.',
     sections: [
       {
+        heading: 'Quick Reference Limit Hotel',
+        body:
+          'Untuk pertanyaan validasi: limit hotel Tier 1 untuk role Staff adalah Rp1.200.000/malam. Angka Rp2.000.000 adalah threshold approval Head of Department, bukan limit hotel.',
+      },
+      {
         heading: 'Alur Approval',
         body:
           'Klaim diajukan oleh karyawan, disetujui manager, lalu direview Finance. Klaim di atas Rp2.000.000 memerlukan approval Head of Department sebelum Finance melakukan pembayaran.',

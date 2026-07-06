@@ -7,6 +7,10 @@ Klasifikasi: Internal
 
 Dokumen ini berisi aturan klaim biaya operasional dan perjalanan dinas. Tabel limit sengaja dibuat panjang agar PDF pecah halaman dan header tabel harus berulang.
 
+## Quick Reference Limit Hotel
+
+Untuk pertanyaan validasi: limit hotel Tier 1 untuk role Staff adalah Rp1.200.000/malam. Angka Rp2.000.000 adalah threshold approval Head of Department, bukan limit hotel.
+
 ## Alur Approval
 
 Klaim diajukan oleh karyawan, disetujui manager, lalu direview Finance. Klaim di atas Rp2.000.000 memerlukan approval Head of Department sebelum Finance melakukan pembayaran.

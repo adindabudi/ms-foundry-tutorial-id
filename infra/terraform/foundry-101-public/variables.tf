@@ -102,9 +102,9 @@ variable "model_deployments" {
 
   default = {
     chat = {
-      deployment_name = "gpt-4o-mini"
-      model_name      = "gpt-4o-mini"
-      model_version   = "2024-07-18"
+      deployment_name = "gpt-4.1"
+      model_name      = "gpt-4.1"
+      model_version   = "2025-04-14"
       sku_name        = "GlobalStandard"
       capacity        = 10
     }

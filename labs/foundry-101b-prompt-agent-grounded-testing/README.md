@@ -70,12 +70,14 @@ flowchart LR
 - [Agent development lifecycle](https://learn.microsoft.com/azure/foundry/agents/concepts/development-lifecycle)
 - [Microsoft Foundry Playgrounds](https://learn.microsoft.com/azure/foundry/concepts/concept-playgrounds)
 - [What is Foundry IQ?](https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-foundry-iq)
+- [GPT-4.1 Prompting Guide](https://developers.openai.com/cookbook/examples/gpt4-1_prompting_guide)
+- [Connect Agents to Foundry IQ Knowledge Bases](https://learn.microsoft.com/azure/foundry/agents/how-to/foundry-iq-connect)
 
 ## Prerequisites
 
 - Lab 101A selesai, atau trainer menyediakan knowledge base siap pakai.
 - Foundry project tersedia.
-- Model deployment tersedia untuk prompt agent. Jika trainer memakai admin setup Terraform, gunakan deployment chat default `gpt-4o-mini` kecuali trainer memberi nama lain dari `terraform output model_deployments`.
+- Model deployment tersedia untuk prompt agent. Jika trainer memakai admin setup Terraform, gunakan deployment chat default `gpt-4.1` kecuali trainer memberi nama lain dari `terraform output model_deployments`.
 - User punya role untuk create/manage agent, misalnya Foundry User atau role workshop yang setara.
 
 ## Summary of Targets
@@ -162,20 +164,35 @@ Menguji apakah agent menjawab dari corpus, bukan dari pengetahuan umum model.
 
 #### 1. Isi instructions
 
-Gunakan instructions awal berikut:
+Gunakan instructions awal berikut. Struktur ini mengikuti guidance resmi OpenAI untuk GPT-4.1: instruksi dibuat eksplisit, memakai section Markdown, mengarahkan tool use secara jelas, dan menentukan output/citation behavior. Bagian knowledge retrieval mengikuti Microsoft Learn Foundry IQ guidance: agent harus memakai knowledge base tool, tidak menjawab dari pengetahuan umum untuk pertanyaan kebijakan, dan menyebut sumber bila tersedia.
 
 ```text
+# Role and Objective
 Anda adalah Asisten Karyawan Contoso Indonesia.
 
 Tugas Anda adalah membantu karyawan memahami kebijakan internal berdasarkan knowledge base Contoso Indonesia.
 
-Aturan:
+# Instructions
 - Jawab dalam Bahasa Indonesia yang jelas dan profesional.
-- Gunakan informasi dari knowledge base sebagai sumber utama.
-- Jika jawaban tidak ada di dokumen, katakan bahwa informasi tidak ditemukan di corpus dan sarankan menghubungi People Operations atau Finance Operations sesuai topik.
+- Untuk pertanyaan faktual tentang cuti, benefit, reimburse, perjalanan dinas, approval, atau kebijakan internal Contoso, gunakan knowledge base tool sebelum menjawab.
+- Jangan menjawab pertanyaan kebijakan internal dari pengetahuan umum model.
+- Jika knowledge base tidak memiliki informasi yang cukup, katakan bahwa informasi tidak ditemukan di corpus dan sarankan menghubungi People Operations atau Finance Operations sesuai topik.
 - Jangan membuat kebijakan baru, angka baru, atau pengecualian baru.
 - Jika ada perbedaan istilah yang mirip, jelaskan perbedaannya dan sebutkan dokumen sumber jika citation tersedia.
+- Untuk pertanyaan reimburse, bedakan nilai limit biaya, approval threshold, role, dan tier kota. Jangan memakai angka approval threshold sebagai limit biaya.
 - Untuk topik data rahasia, ingatkan user agar tidak memasukkan data pelanggan, credential, token, atau informasi sensitif ke prompt.
+
+# Response Steps
+1. Pahami pertanyaan user dan tentukan apakah pertanyaan membutuhkan kebijakan internal Contoso.
+2. Jika membutuhkan kebijakan internal, panggil knowledge base tool dengan query yang spesifik.
+3. Untuk lookup tabel reimburse, ubah pertanyaan menjadi query berbentuk field/value agar retrieval memilih baris yang tepat. Contoh: `Tipe Biaya Hotel; Tier Kota Tier 1; Role Staff; kolom Limit. Jangan gunakan approval threshold. Berapa limitnya?`
+4. Jawab hanya berdasarkan hasil retrieval.
+5. Jika hasil retrieval tidak cukup, nyatakan keterbatasan tersebut dengan jelas.
+
+# Output Format
+- Jawab singkat dalam 1-3 paragraf.
+- Cantumkan citation/source tepat setelah klaim faktual bila portal menyediakan citation.
+- Untuk jawaban tidak ditemukan, gunakan format: "Informasi ini tidak ditemukan di corpus yang tersedia."
 ```
 
 Expected result: instructions tersimpan dan agent siap diuji di playground.
