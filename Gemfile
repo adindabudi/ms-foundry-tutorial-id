@@ -6,7 +6,7 @@ gem "minimal-mistakes-jekyll", "= 4.27.3"
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.15"
   gem "jekyll-sitemap", "~> 1.4"
-  gem "jekyll-seo-tag", "~> 2.8"
+  gem "jekyll-seo-tag", "~> 2.9"
   gem "jekyll-include-cache"
 end
 
