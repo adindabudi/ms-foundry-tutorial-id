@@ -200,7 +200,7 @@ Expected result: kamu tahu file mana yang akan masuk Blob container dan kenapa f
 2. Buka Storage account yang disediakan workshop.
 3. Pilih **Data storage** > **Containers**.
 
-   ![Azure portal Containers blade showing Add container and Upload actions.](assets/portal-storage-containers.jpg)
+   _Placeholder screenshot: blade Containers dengan aksi Add container dan Upload — tangkap manual dari portal._
 
 4. Buat container baru, misalnya:
 
@@ -243,13 +243,13 @@ Membuat knowledge source yang menghubungkan Blob container ke Azure AI Search / 
 2. Di left navigation, pilih **Agentic retrieval** > **Knowledge sources**.
 3. Pilih **Add knowledge source** > **Add knowledge source**.
 
-   ![Azure portal Knowledge sources blade with Add knowledge source action.](assets/portal-knowledge-sources-list.jpg)
+   _Placeholder screenshot: blade Knowledge sources dengan aksi Add knowledge source — tangkap manual dari portal._
 
-   ![Azure portal Add knowledge source dropdown showing Add knowledge source and JSON options.](assets/portal-add-knowledge-source-menu.jpg)
+   _Placeholder screenshot: dropdown Add knowledge source (opsi Add knowledge source dan JSON) — tangkap manual dari portal._
 
 4. Pilih **Azure blob (Indexed)**.
 
-   ![Azure portal Create knowledge source pane showing source type options.](assets/portal-create-knowledge-source-form.jpg)
+   _Placeholder screenshot: pane Create knowledge source dengan opsi source type — tangkap manual dari portal._
 
 Official Microsoft Learn screenshot:
 
@@ -306,9 +306,9 @@ Membuat knowledge base dari knowledge source, lalu menjalankan test retrieval se
 1. Di Azure AI Search service, buka **Agentic retrieval** > **Knowledge bases**.
 2. Pilih **Add knowledge base** > **Add knowledge base**.
 
-   ![Azure portal Knowledge bases blade with Add knowledge base action.](assets/portal-knowledge-bases-list.jpg)
+   _Placeholder screenshot: blade Knowledge bases dengan aksi Add knowledge base — tangkap manual dari portal._
 
-   ![Azure portal Add knowledge base dropdown showing Add knowledge base and JSON options.](assets/portal-add-knowledge-base-menu.jpg)
+   _Placeholder screenshot: dropdown Add knowledge base (opsi Add knowledge base dan JSON) — tangkap manual dari portal._
 
 3. Isi name:
 
@@ -336,9 +336,7 @@ Official Microsoft Learn screenshot:
 
 Tenant screenshot:
 
-![Azure portal Create knowledge base pane captured from the workshop tenant.](assets/portal-create-knowledge-base-form.jpg)
-
-Screenshot status: screenshot Microsoft Learn di atas menunjukkan shape umum form knowledge base. Screenshot tenant sendiri tetap perlu diambil via Playwright setelah login kalau ingin dokumentasi workshop menampilkan resource dan naming yang persis.
+_Placeholder screenshot: pane Create knowledge base — tangkap manual dari portal._
 
 #### 2. Test retrieval dengan pertanyaan validasi
 
