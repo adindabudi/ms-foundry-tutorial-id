@@ -11,6 +11,10 @@ Dokumen ini merangkum benefit karyawan berdasarkan tipe kontrak kerja. Beberapa 
 
 Benefit berlaku berdasarkan status karyawan pada tanggal klaim diajukan. Perubahan status dari kontrak ke tetap mengikuti tanggal efektif pada HRIS, bukan tanggal verbal offer.
 
+## Eligibility Allowance per Status Karyawan
+
+Intern tidak mendapat internet allowance dan tidak mendapat device allowance. Internet allowance sebesar Rp350.000 per bulan hanya untuk karyawan tetap dan kontrak yang bekerja hybrid atau remote dengan bukti tagihan. Device allowance sebesar Rp5.000.000 per 3 tahun hanya untuk karyawan tetap, dan bukan pengganti laptop kantor melainkan untuk perangkat pendukung. Internet allowance berbeda dari device allowance: internet allowance menanggung biaya langganan internet bulanan, sedangkan device allowance menanggung pembelian perangkat pendukung kerja.
+
 ## Matrix Benefit dan Eligibility
 
 | Benefit | Karyawan Tetap | Kontrak | Intern | Limit / Frekuensi | Catatan |
