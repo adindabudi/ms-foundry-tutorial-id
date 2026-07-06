@@ -14,7 +14,7 @@ optional: false
 
 # 101A: Siapkan Corpus dan Foundry IQ Knowledge Base
 
-Lab ini menyiapkan corpus fiktif Contoso Indonesia dan knowledge base Foundry IQ yang akan dipakai oleh prompt agent di lab berikutnya. Fokusnya portal-first: peserta mengunduh sample corpus dari situs ini, upload ke Azure Blob Storage, membuat knowledge source dan knowledge base, lalu menguji retrieval sebelum agent dibuat.
+Lab ini menyiapkan corpus fiktif Contoso Indonesia dan knowledge base Foundry IQ yang akan dipakai oleh prompt agent di lab berikutnya. Fokusnya portal-first: kamu mengunduh sample corpus dari situs ini, upload ke Azure Blob Storage, membuat knowledge source dan knowledge base, lalu menguji retrieval sebelum agent dibuat.
 
 ![Ilustrasi dokumen internal yang mengalir ke knowledge graph dan chatbot kerja internal.](../../assets/images/labs/foundry-101/hero-foundry-iq-agent.png)
 
@@ -47,7 +47,7 @@ Banyak demo chatbot gagal bukan karena modelnya buruk, tetapi karena knowledge s
 
 ## Introduction
 
-Skenario: Contoso Indonesia ingin membuat asisten internal untuk menjawab pertanyaan karyawan tentang cuti, benefit, reimburse, dan alur approval. Peserta akan memakai corpus fiktif yang realistis: PDF policy, tabel panjang yang pecah halaman, flow chart, DOCX source, dan gambar form reimburse hasil generate image.
+Skenario: Contoso Indonesia ingin membuat asisten internal untuk menjawab pertanyaan karyawan tentang cuti, benefit, reimburse, dan alur approval. Kamu akan memakai corpus fiktif yang realistis: PDF policy, tabel panjang yang pecah halaman, flow chart, DOCX source, dan gambar form reimburse hasil generate image.
 
 Di Microsoft Foundry, Foundry IQ menyediakan knowledge base yang dapat dipakai oleh agent. Azure AI Search menjadi retrieval infrastructure di belakangnya. Untuk pengalaman portal, kamu bisa bekerja dari Microsoft Foundry portal pada **Build > Knowledge** jika surface itu tersedia di tenant kamu, atau dari Azure portal pada **Azure AI Search > Agentic retrieval**. Screenshot resmi Microsoft Learn yang dipakai di lab ini berasal dari Azure AI Search portal karena saat ini dokumentasinya paling lengkap untuk knowledge source dan knowledge base.
 
@@ -91,22 +91,22 @@ Corpus Contoso Indonesia sengaja dibuat seperti dokumen enterprise yang sering m
 | `HR-001-kebijakan-cuti-2026.pdf` | Ya | Policy HR multi-halaman untuk lookup entitlement cuti dan edge case karyawan. |
 | `HR-002-benefit-karyawan-2026.pdf` | Ya | Benefit dengan istilah mirip seperti internet allowance vs device allowance, plus explicit gap untuk kebijakan parkir. |
 | `FIN-001-reimburse-dan-perjalanan-dinas.pdf` | Ya | Tabel limit reimburse panjang, role `Staff` vs `Manager+`, tier kota, approval threshold, dan flowchart approval. |
-| `FORM-reimburse-scan.png` | Ya | Contoh scanned/noisy form supaya peserta melihat behavior image verbalization dan OCR/verbalized image text. |
+| `FORM-reimburse-scan.png` | Ya | Contoh scanned/noisy form untuk melihat behavior image verbalization dan OCR/verbalized image text. |
 | `docx/*.docx` | Tidak untuk L100 default | Source editable untuk maintainer/trainer. Upload DOCX hanya jika trainer ingin membandingkan behavior format dokumen. |
 
 ### Chunking dan PDF table strategy
 
 MS Learn menyarankan chunking karena model embedding seperti `text-embedding-3-small` punya batas input 8.191 token, dan chunking juga mencegah informasi hilang karena truncation. Untuk custom pipeline, starting point umum adalah Text Split `pages` dengan `maximumPageLength` sekitar 2.000 karakter dan `pageOverlapLength` sekitar 500 karakter; dokumen yang sangat terstruktur bisa butuh overlap lebih kecil, sedangkan narasi panjang bisa butuh overlap lebih besar.
 
-Untuk lab portal-first ini, peserta tidak membuat skillset manual. Blob knowledge source akan membuat data source, skillset, indexer, dan index secara terkelola. Karena corpus punya tabel PDF yang pecah halaman, expected check-nya bukan hanya “indexer success”, tetapi juga prompt validasi yang memaksa row lookup, misalnya `Hotel + Tier 1 + Staff + Limit`. Kalau lookup tabel salah, perbaiki corpus atau prompt retrieval pattern sebelum membuat agent terlihat “selesai”.
+Di lab portal-first ini, kamu tidak membuat skillset manual. Blob knowledge source akan membuat data source, skillset, indexer, dan index secara terkelola. Karena corpus punya tabel PDF yang pecah halaman, expected check-nya bukan hanya “indexer success”, tetapi juga prompt validasi yang memaksa row lookup, misalnya `Hotel + Tier 1 + Staff + Limit`. Kalau lookup tabel salah, perbaiki corpus atau prompt retrieval pattern sebelum membuat agent terlihat “selesai”.
 
 ### Image verbalization dan image serving
 
-Lab ini memakai image verbalization untuk visual yang bisa diekstrak: knowledge source memiliki `chatCompletionModel`, `disableImageVerbalization` dibiarkan `false`, dan image/flowchart dapat menjadi deskripsi teks yang ikut diindeks. Ini cukup untuk L100 karena peserta hanya perlu membuktikan jawaban grounded dari corpus kecil.
+Lab ini memakai image verbalization untuk visual yang bisa diekstrak: knowledge source punya `chatCompletionModel`, `disableImageVerbalization` tetap `false`, dan image/flowchart jadi deskripsi teks yang ikut diindeks. Untuk L100, ini sudah cukup untuk membuktikan jawaban grounded dari corpus kecil.
 
 Image serving berbeda dari image verbalization. Image serving membutuhkan `assetStore` pada knowledge source dan `enableImageServing` pada knowledge base agar Azure AI Search menyimpan image artifact di Blob dan mengirim image yang relevan ke answer synthesis. Fitur ini masih preview, menambah latency/biaya, dan perlu RBAC tambahan ke asset store. Terraform admin setup sudah membuat container `asset-store` untuk trainer yang ingin mencoba path ini, tetapi lab default tidak mewajibkan image serving.
 
-Untuk production atau workshop lanjutan yang benar-benar perlu mempertahankan tabel lintas halaman, bounding box, dan struktur layout, MS Learn merekomendasikan mempertimbangkan Azure Content Understanding skill karena mendukung semantic chunking, cross-page table extraction, dan AI-generated image descriptions. Lab 101A tetap memakai managed Blob knowledge source agar peserta L100 fokus pada portal flow dan validation evidence.
+Untuk production atau workshop lanjutan yang benar-benar perlu mempertahankan tabel lintas halaman, bounding box, dan struktur layout, MS Learn merekomendasikan mempertimbangkan Azure Content Understanding skill karena mendukung semantic chunking, cross-page table extraction, dan AI-generated image descriptions. Lab 101A tetap memakai managed Blob knowledge source biar kamu fokus ke portal flow dan validation evidence.
 
 ## Documentation and Additional Training Links
 
@@ -140,7 +140,7 @@ Untuk production atau workshop lanjutan yang benar-benar perlu mempertahankan ta
 | Foundry project | Your user | Foundry User or equivalent workshop role |
 
 > [!TIP]
-> Kalau workshop trainer sudah menyediakan Search service, storage container, model deployment, dan RBAC, peserta cukup mengikuti langkah upload dan portal setup. Kalau belum, minta owner subscription menjalankan admin setup di `infra/terraform/foundry-101-public` sebelum L100 dimulai; lab ini bukan provisioning lab untuk peserta.
+> Kalau workshop trainer sudah menyediakan Search service, storage container, model deployment, dan RBAC, kamu cukup mengikuti langkah upload dan portal setup. Kalau belum, minta owner subscription menjalankan admin setup di `infra/terraform/foundry-101-public` sebelum L100 dimulai; ini bukan provisioning lab.
 
 ## Summary of Targets
 
