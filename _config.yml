@@ -3,7 +3,6 @@ subtitle: "Tutorial Microsoft Foundry berbahasa Indonesia"
 description: "Hands-on labs Microsoft Foundry untuk prompt agents, Foundry IQ, validation, observability, dan pilot readiness."
 baseurl: "/ms-foundry-tutorial-id"
 url: "https://adindaputra.github.io"
-logo: "/favicon.svg"
 
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: "air"
@@ -31,7 +30,6 @@ kramdown:
 author:
   name: "MS Foundry Tutorial ID"
   bio: "Tutorial Microsoft Foundry berbahasa Indonesia"
-  avatar: "/favicon.svg"
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
@@ -103,9 +101,6 @@ defaults:
       type: "pages"
     values:
       layout: "single"
-
-include:
-  - favicon.svg
 
 exclude:
   - .github/

@@ -11,7 +11,7 @@ Early repository foundation. The first learning path is Foundry 101: a guided wo
 - A GitHub Pages site built with Jekyll and Minimal Mistakes.
 - Foundry 101 lab pages for self-paced and guided workshop use.
 - Fictional Contoso Indonesia sample corpus for retrieval and grounded answer exercises.
-- Validation prompts, readiness checklists, and feature-readiness notes.
+- Validation prompts, readiness guidance, and feature-readiness notes embedded in the labs.
 
 ## Local Development
 

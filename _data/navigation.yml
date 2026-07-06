@@ -1,11 +1,5 @@
 main:
   - title: "Home"
     url: /
-  - title: "Modules"
-    url: /modules/foundry-101/
-  - title: "Labs"
-    url: /labs/foundry-101a-corpus-foundry-iq/
-  - title: "Workshops"
-    url: /workshops/foundry-101-guided-workshop/
-  - title: "References"
-    url: /references/feature-readiness/
+  - title: "About"
+    url: /about/

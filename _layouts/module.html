@@ -234,12 +234,6 @@ layout: single
 }
 </style>
 
-{%- comment -%}
-  Event-nav manifest — matches the lab layout pattern so module pages can
-  participate in event-aware UI when linked from an event context.
-{%- endcomment -%}
-{% include event-nav/manifest.html %}
-
 {% assign section_map = "core_learning_path:Core Learning Path,intermediate_labs:Intermediate,advanced_labs:Advanced,specialized_labs:Specialized,optional_labs:Optional,external_labs:External,core:Core,intermediate:Intermediate,advanced:Advanced,specialized:Specialized,optional:Optional" | split: "," %}
 {% assign section_label = page.section | default: "Module" %}
 {% for pair in section_map %}
@@ -268,7 +262,7 @@ layout: single
 {% endif %}
 
 <nav class="mod-breadcrumb" aria-label="Breadcrumb">
-  <a href="{{ '/modules/' | relative_url }}">All Modules</a>
+  <a href="{{ '/' | relative_url }}">Home</a>
   <span aria-hidden="true">/</span>
   <span class="mod-breadcrumb-current">{{ page.title }}</span>
 </nav>
@@ -304,13 +298,6 @@ layout: single
   {% endif %}
 </section>
 
-{% comment %}
-  Event navigation rail — hidden until event-nav/script.html resolves an
-  active event context (via ?event= or sticky sessionStorage). Lets a module
-  reached from an agenda show the same in-event nav + breadcrumb as labs.
-{% endcomment %}
-{% include event-nav/rail.html %}
-
 {% if linked_lab %}
 <section class="mod-lab" aria-labelledby="module-lab-heading">
   <h2 class="mod-section-heading" id="module-lab-heading">Hands-on Lab</h2>
@@ -332,7 +319,3 @@ layout: single
   </a>
 </section>
 {% endif %}
-
-{% include event-nav/nav-pair.html %}
-
-{% include event-nav/script.html %}

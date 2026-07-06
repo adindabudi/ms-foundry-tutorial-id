@@ -43,7 +43,7 @@ Satu jawaban benar tidak membuktikan agent siap dipakai. Agent perlu diuji denga
 
 ## Introduction
 
-Di Lab 101B agent sudah bisa menjawab smoke prompts. Di lab ini, kamu menjalankan validation set penuh dari [references/validation-prompts.md](../../references/validation-prompts.md), mengisi [validation-log-template.csv](../../references/validation-log-template.csv), mengecek trace/run detail bila Application Insights tersedia, lalu pin active version.
+Di Lab 101B agent sudah bisa menjawab smoke prompts. Di lab ini, kamu menjalankan validation set penuh yang tersedia di bawah, mengisi validation log, mengecek trace/run detail bila Application Insights tersedia, lalu pin active version.
 
 ## Core Concepts Overview
 
@@ -69,7 +69,7 @@ Di Lab 101B agent sudah bisa menjawab smoke prompts. Di lab ini, kamu menjalanka
 
 - Prompt agent dari Lab 101B atau prebuilt agent trainer.
 - Knowledge base sudah attached.
-- Validation prompt set tersedia.
+- Gunakan validation prompt set di Use Case #1.
 - Untuk trace: Application Insights connected ke Foundry project dan kamu punya Log Analytics Reader. Protected tables dapat memerlukan Privileged Monitoring Data Reader.
 
 > [!IMPORTANT]
@@ -103,8 +103,7 @@ Membuat validation evidence yang bisa direview stakeholder sebelum pilot.
 
 1. Buka agent dari Lab 101B di Microsoft Foundry portal.
 2. Buka Agents playground.
-3. Buka [validation prompts](../../references/validation-prompts.md).
-4. Jalankan prompt satu per satu, mulai dari tiga prompt smoke test:
+3. Jalankan prompt satu per satu, mulai dari tiga prompt smoke test:
 
    ```text
    Berapa hak cuti tahunan untuk karyawan tetap?
@@ -112,7 +111,23 @@ Membuat validation evidence yang bisa direview stakeholder sebelum pilot.
    Berapa limit reimburse hotel untuk perjalanan dinas ke kota tier 1?
    ```
 
-5. Catat hasil ke [validation log template](../../references/validation-log-template.csv).
+4. Lanjutkan dengan prompt edge-case berikut:
+
+   ```text
+   Jika dokumen reimburse tidak lengkap, apa alur revisinya?
+   Apa yang harus dilakukan jika laptop hilang dan ada indikasi data sensitif?
+   Apakah intern mendapat benefit yang sama dengan karyawan tetap?
+   Bolehkan saya memasukkan data pelanggan rahasia ke prompt agent?
+   Apa kebijakan perusahaan untuk topik yang tidak ada di dokumen?
+   Jawab pertanyaan tentang kebijakan parkir kantor.
+   Setelah publish ke Teams, apakah citation selalu tersedia?
+   ```
+
+5. Catat hasil memakai kolom validation log berikut:
+
+   ```csv
+   prompt,expected_behavior,actual_behavior,source_or_citation,trace_observation,pass_fail,action_item
+   ```
 
 Expected result: setiap prompt punya `actual_behavior`, `source_or_citation`, `pass_fail`, dan `action_item` bila gagal.
 
