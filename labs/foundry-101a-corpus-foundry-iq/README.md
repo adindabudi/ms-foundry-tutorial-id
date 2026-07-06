@@ -340,6 +340,8 @@ _Placeholder screenshot: pane Create knowledge base — tangkap manual dari port
 
 #### 2. Test retrieval dengan pertanyaan validasi
 
+> Uji ini di **level knowledge base (retrieve)**: kamu memvalidasi retrieval dan citation, belum ada agent. Jawaban agent diuji di Lab 101B, dan validation set lengkap ada di Lab 101C. Supaya tidak berulang, di sini cukup satu pertanyaan lookup tabel yang menantang.
+
 Kirim pertanyaan berikut di knowledge base playground/chat test:
 
 ```text
@@ -351,18 +353,6 @@ Expected result:
 - Jawaban menyebut limit `Rp1.200.000/malam`.
 - Jawaban mengarah ke dokumen `FIN-001-reimburse-dan-perjalanan-dinas.pdf`.
 - Jika portal menampilkan citation atau references, citation harus menunjuk ke finance policy, bukan HR benefit.
-
-Lanjutkan dengan pertanyaan kedua:
-
-```text
-Apakah intern mendapat internet allowance? Jelaskan berdasarkan dokumen benefit.
-```
-
-Expected result:
-
-- Jawaban menyatakan intern tidak mendapat internet allowance.
-- Source berasal dari `HR-002-benefit-karyawan-2026.pdf`.
-- Agent tidak mencampur internet allowance dengan device allowance.
 
 #### 3. Review activity/debug output
 
@@ -391,14 +381,13 @@ Expected result: kamu bisa menjelaskan dari mana dokumen masuk, bagaimana diinde
 
 ## Congratulations! You completed Lab 101A
 
-Kamu sekarang punya corpus dan knowledge base yang siap dipakai di Lab 101B. Jangan lanjut membuat agent sebelum retrieval menjawab minimal dua pertanyaan validasi dengan source yang masuk akal.
+Kamu sekarang punya corpus dan knowledge base yang siap dipakai di Lab 101B. Jangan lanjut membuat agent sebelum retrieval menjawab pertanyaan lookup tabel itu dengan source yang masuk akal.
 
 ## Test your understanding
 
 - Kenapa corpus harus diuji sebelum agent dibuat?
 - Apa bedanya knowledge source dan knowledge base?
 - Role apa yang dibutuhkan Search managed identity untuk membaca Blob?
-- Kenapa Teams/M365 publish tidak menjadi syarat di lab ini?
 - Apa yang harus dicatat jika portal tidak menampilkan citation atau activity log?
 
 ## Challenge: Apply this to your own use case

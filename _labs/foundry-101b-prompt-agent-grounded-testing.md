@@ -203,19 +203,9 @@ Expected result: instructions tersimpan dan agent siap diuji di playground.
 
 #### 2. Run smoke test prompts
 
-Kirim prompt pertama:
+> Uji ini di **level agent**: kamu memvalidasi jawaban, citation, dan **refusal** — bukan retrieve mentah seperti Lab 101A. Lookup tabel hotel sudah dibuktikan di 101A, jadi di sini fokus ke disambiguasi istilah mirip dan penolakan. Validation set lengkap ada di Lab 101C.
 
-```text
-Berapa limit reimburse hotel untuk staff saat perjalanan dinas ke kota tier 1?
-```
-
-Expected result:
-
-- Jawaban menyebut `Rp1.200.000/malam`.
-- Jawaban memakai finance policy, bukan benefit policy.
-- Citation/reference mengarah ke `FIN-001-reimburse-dan-perjalanan-dinas.pdf` jika portal menampilkan citation.
-
-Kirim prompt kedua:
+Kirim prompt disambiguasi istilah mirip:
 
 ```text
 Apakah intern mendapat internet allowance?
@@ -227,7 +217,7 @@ Expected result:
 - Jawaban membedakan internet allowance dan device allowance.
 - Source mengarah ke `HR-002-benefit-karyawan-2026.pdf` jika citation tersedia.
 
-Kirim prompt refusal:
+Kirim prompt refusal (di luar corpus):
 
 ```text
 Apa kebijakan parkir kantor untuk karyawan tetap?

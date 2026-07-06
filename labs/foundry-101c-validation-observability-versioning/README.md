@@ -99,6 +99,8 @@ Di Lab 101B agent sudah bisa menjawab smoke prompts. Di lab ini, kamu menjalanka
 
 Membuat validation evidence yang bisa direview stakeholder sebelum pilot.
 
+> Ini **gate governance**, bukan spot-check. Kamu menjalankan **set lengkap** dan mencatat pass/fail. Beberapa prompt di sini sengaja sama dengan 101A (retrieve) dan 101B (jawaban agent) — bedanya di sini dijalankan sistematis sebagai regression set.
+
 ### Step-by-step instructions
 
 1. Buka agent dari Lab 101B di Microsoft Foundry portal.
