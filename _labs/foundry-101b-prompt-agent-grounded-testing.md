@@ -121,15 +121,17 @@ Membuat prompt agent portal-first di Microsoft Foundry.
    asisten-karyawan-contoso
    ```
 
-7. Pada pilihan model, **pilih deployment `gpt-4.1` yang sudah disediakan admin**. Jangan biarkan portal auto-deploy model default baru (misalnya `o3`).
+7. Klik **Create**. Di **UI Foundry baru**, dialog quick-create **tidak menyediakan pilihan model** — portal otomatis men-deploy **model default** (mis. `o3` atau `grok`) sebagai bagian dari pembuatan agent.
 
-Expected result: agent baru terbuka di agent builder / playground setup pane memakai `gpt-4.1`.
+Expected result: agent baru terbuka di agent builder / playground setup pane.
+
+8. Di setup pane, **ganti model agent ke `gpt-4.1`** (deployment yang sudah disediakan admin). Ini menyamakan agent dengan standar lab dan menghindari ketergantungan pada model default yang ter-auto-deploy.
 
 > [!IMPORTANT]
 > Nama agent tidak selalu bisa diganti setelah dibuat. Gunakan nama yang stabil dan tidak mengandung data tenant/customer.
 
 > [!WARNING]
-> Kalau muncul error `AuthorizationFailed ... Microsoft.CognitiveServices/accounts/deployments/write ... deployments/o3`, artinya portal mencoba **men-deploy model baru** (mis. `o3`), bukan memakai yang sudah ada. Membuat deployment adalah tugas admin dan sengaja tidak diberikan ke peserta (least-privilege). Fix: pilih deployment yang sudah tersedia (`gpt-4.1` atau `gpt-4o-mini`), bukan model default yang belum di-deploy.
+> Kalau muncul `AuthorizationFailed ... Microsoft.CognitiveServices/accounts/deployments/write`, artinya identitas kamu belum boleh men-deploy model, padahal quick-create butuh itu. Membuat deployment adalah aksi admin. Untuk workshop ini, admin memberi peserta custom role least-privilege **Foundry Workshop Model Deployer** (hanya `deployments/read`+`write` di akun Foundry, via Terraform) agar auto-deploy berhasil. Kalau masih gagal: tunggu propagasi RBAC (±10 menit) lalu sign-out/in, atau minta admin. Setelah agent jadi, tetap **ganti modelnya ke `gpt-4.1`** untuk kontrol biaya.
 
 Cost implication: membuat agent biasanya tidak mahal sendiri, tetapi test chat akan memakai token model. Jangan jalankan batch prompt besar di L100.
 

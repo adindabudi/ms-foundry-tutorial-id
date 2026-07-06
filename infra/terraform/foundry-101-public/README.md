@@ -21,6 +21,7 @@ Terraform membuat satu resource group baru per tutorial level supaya cleanup sed
   - Foundry project managed identity -> Search Index Data Reader pada Search service.
   - Workshop users/groups -> Foundry, Search, Storage, dan Cognitive Services roles yang dibutuhkan lab.
   - Workshop users/groups -> Reader pada resource group agar semua resource terlihat dan bisa dinavigasi di Azure portal (role lain hanya scope resource, jadi tanpa ini portal browse tampak kosong).
+  - Workshop users/groups -> custom role **Foundry Workshop Model Deployer** (`deployments/read`+`write` pada Foundry account). UI "Create agent" baru auto-deploy model default (o3/grok) saat pembuatan agent; tanpa ini peserta kena `AuthorizationFailed` di `deployments/write`. Least-privilege: hanya deployment, bukan Cognitive Services Contributor.
 
 ## Prasyarat admin
 

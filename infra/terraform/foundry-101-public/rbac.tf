@@ -78,3 +78,31 @@ resource "azurerm_role_assignment" "workshop_principals" {
   role_definition_name = each.value.role_definition_name
   principal_id         = each.value.principal_id
 }
+
+# The new Foundry portal "Create agent" quick flow auto-deploys a default model
+# (e.g., o3 / grok) which requires Microsoft.CognitiveServices/accounts/deployments/write
+# on the account. Workshop participants otherwise hold only resource-scoped USE roles.
+# Grant a least-privilege custom role limited to model deployments so agent creation
+# succeeds, without the broad Cognitive Services Contributor role.
+resource "azurerm_role_definition" "workshop_model_deployer" {
+  name        = "Foundry Workshop Model Deployer ${random_string.suffix.result}"
+  scope       = azapi_resource.foundry_account.id
+  description = "Least-privilege: read and create model deployments on the Foundry account for workshop agent creation."
+
+  permissions {
+    actions = [
+      "Microsoft.CognitiveServices/accounts/deployments/read",
+      "Microsoft.CognitiveServices/accounts/deployments/write",
+    ]
+  }
+
+  assignable_scopes = [azapi_resource.foundry_account.id]
+}
+
+resource "azurerm_role_assignment" "workshop_model_deployer" {
+  for_each = local.workshop_principal_object_ids
+
+  scope              = azapi_resource.foundry_account.id
+  role_definition_id = azurerm_role_definition.workshop_model_deployer.role_definition_resource_id
+  principal_id       = each.value
+}
