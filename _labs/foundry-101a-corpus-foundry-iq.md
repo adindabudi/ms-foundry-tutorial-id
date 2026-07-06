@@ -271,6 +271,8 @@ Gunakan nilai contoh berikut, sesuaikan dengan resource workshop:
 | Authentication | Managed identity | Gunakan system-assigned identity bila workshop setup mendukung. |
 | Vectorizer kind | Microsoft Foundry | Pilih project dan embedding deployment. |
 | Embedding deployment | `text-embedding-3-small` atau deployment workshop | Harus sudah tersedia sebelum lab. |
+| Image verbalization | Aktif — `disableImageVerbalization` dibiarkan `false` | Corpus punya gambar (`FORM-reimburse-scan.png`), jadi teks/flow di dalam gambar ikut dideskripsikan dan diindeks. |
+| Chat completion model (image verbalization) | Microsoft Foundry, chat deployment yang **didukung portal** agentic retrieval | Model yang mendeskripsikan gambar jadi teks. Portal mendukung `gpt-4o`, `gpt-4o-mini`, `gpt-5`, `gpt-5-mini`, `gpt-5-nano` (bukan `gpt-4.1`). Search managed identity butuh `Cognitive Services User` di Foundry. |
 
 Expected result: knowledge source berhasil dibuat dan portal mulai membuat generated objects seperti data source, skillset, index, dan indexer.
 
