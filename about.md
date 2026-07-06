@@ -22,4 +22,4 @@ MS Foundry Tutorial ID adalah workshop-style tutorial berbahasa Indonesia untuk 
 
 ## Admin Setup
 
-Admin workshop bisa memakai Terraform di [`infra/terraform/foundry-101-public`](https://github.com/adindaputra/ms-foundry-tutorial-id/tree/HEAD/infra/terraform/foundry-101-public) untuk menyiapkan resource Foundry 101 public/keyless sebelum sesi dimulai.
+Admin workshop bisa memakai Terraform di [`infra/terraform/foundry-101-public`](https://github.com/adindabudi/ms-foundry-tutorial-id/tree/HEAD/infra/terraform/foundry-101-public) untuk menyiapkan resource Foundry 101 public/keyless sebelum sesi dimulai.

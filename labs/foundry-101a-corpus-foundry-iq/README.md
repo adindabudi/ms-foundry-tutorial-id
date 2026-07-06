@@ -179,7 +179,7 @@ Upload corpus Contoso Indonesia ke Blob container agar siap diindeks oleh knowle
 
 #### 1. Review corpus lokal
 
-Unduh corpus dari [halaman Dataset](https://adindaputra.github.io/ms-foundry-tutorial-id/dataset/), atau buka folder [`sample-data/contoso-indonesia`](../../sample-data/contoso-indonesia/) di repo. Untuk Lab 101A, gunakan file berikut sebagai minimum corpus:
+Unduh corpus dari [halaman Dataset](https://adindabudi.github.io/ms-foundry-tutorial-id/dataset/), atau buka folder [`sample-data/contoso-indonesia`](../../sample-data/contoso-indonesia/) di repo. Untuk Lab 101A, gunakan file berikut sebagai minimum corpus:
 
 | File | Upload? | Why |
 | --- | --- | --- |
