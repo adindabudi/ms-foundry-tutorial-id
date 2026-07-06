@@ -36,6 +36,11 @@ locals {
         scope                = azapi_resource.storage_account.id
         role_definition_name = var.role_names.storage_blob_data_contributor
       }
+      "${principal_id}-resource-group-reader" = {
+        principal_id         = principal_id
+        scope                = azurerm_resource_group.this.id
+        role_definition_name = "Reader"
+      }
     }
   ]
 
