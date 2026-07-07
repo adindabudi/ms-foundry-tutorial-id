@@ -11,6 +11,15 @@ Dokumen ini menjelaskan hak cuti, aturan pengajuan, dan pengecualian untuk karya
 
 Semua cuti harus diajukan melalui HR Portal. Manager wajib memberikan keputusan maksimal dua hari kerja setelah permintaan diterima, kecuali cuti sakit yang dilaporkan setelah kejadian.
 
+## Proses Pengajuan Cuti End-to-End
+
+Alur pengajuan cuti berjalan end-to-end sebagai berikut:
+1. Karyawan mengajukan cuti melalui HR Portal dengan memilih jenis cuti serta tanggal mulai dan tanggal selesai.
+2. Manager melakukan review dan memberikan keputusan (setuju atau tolak) maksimal dua hari kerja setelah permintaan diterima.
+3. Setelah disetujui, HR memperbarui saldo cuti dan status pengajuan pada sistem.
+4. Sistem mengirim notifikasi hasil pengajuan ke karyawan.
+Pengecualian: cuti sakit dapat dilaporkan pada hari H setelah kejadian, dan cuti sakit lebih dari satu hari memerlukan surat dokter.
+
 ## Dokumen Pendukung
 
 Cuti sakit lebih dari satu hari memerlukan surat dokter. Cuti khusus memerlukan dokumen pendukung sesuai kategori, seperti undangan resmi, akta, atau surat keterangan dari instansi terkait.

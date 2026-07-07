@@ -53,6 +53,11 @@ const documents = [
           'Semua cuti harus diajukan melalui HR Portal. Manager wajib memberikan keputusan maksimal dua hari kerja setelah permintaan diterima, kecuali cuti sakit yang dilaporkan setelah kejadian.',
       },
       {
+        heading: 'Proses Pengajuan Cuti End-to-End',
+        body:
+          'Alur pengajuan cuti berjalan end-to-end sebagai berikut:\n1. Karyawan mengajukan cuti melalui HR Portal dengan memilih jenis cuti serta tanggal mulai dan tanggal selesai.\n2. Manager melakukan review dan memberikan keputusan (setuju atau tolak) maksimal dua hari kerja setelah permintaan diterima.\n3. Setelah disetujui, HR memperbarui saldo cuti dan status pengajuan pada sistem.\n4. Sistem mengirim notifikasi hasil pengajuan ke karyawan.\nPengecualian: cuti sakit dapat dilaporkan pada hari H setelah kejadian, dan cuti sakit lebih dari satu hari memerlukan surat dokter.',
+      },
+      {
         heading: 'Dokumen Pendukung',
         body:
           'Cuti sakit lebih dari satu hari memerlukan surat dokter. Cuti khusus memerlukan dokumen pendukung sesuai kategori, seperti undangan resmi, akta, atau surat keterangan dari instansi terkait.',
@@ -88,6 +93,11 @@ const documents = [
         heading: 'Prinsip Eligibility',
         body:
           'Benefit berlaku berdasarkan status karyawan pada tanggal klaim diajukan. Perubahan status dari kontrak ke tetap mengikuti tanggal efektif pada HRIS, bukan tanggal verbal offer.',
+      },
+      {
+        heading: 'Eligibility Allowance per Status Karyawan',
+        body:
+          'Intern tidak mendapat internet allowance dan tidak mendapat device allowance. Internet allowance sebesar Rp350.000 per bulan hanya untuk karyawan tetap dan kontrak yang bekerja hybrid atau remote dengan bukti tagihan. Device allowance sebesar Rp5.000.000 per 3 tahun hanya untuk karyawan tetap, dan bukan pengganti laptop kantor melainkan untuk perangkat pendukung. Internet allowance berbeda dari device allowance: internet allowance menanggung biaya langganan internet bulanan, sedangkan device allowance menanggung pembelian perangkat pendukung kerja.',
       },
     ],
     tableTitle: 'Matrix Benefit dan Eligibility',
